@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.mycard {
+    width: 21%;
+    padding: 0px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* צל */
+    transition: transform 0.3s ease-in-out; /* אפקט התרחבות */
+  }
+  
+  .mycard:hover {
+    transform: translateY(-5px); /* הרמה קלה כשמעבירים את העכבר */
+  }
+  
+  .mycard img {
+    width: 100%;
+    height: 200px; /* תוכל לשחק עם הגובה כדי להתאים לתמונה */
+    object-fit: cover; /* לשמור על פרופורציות */
+  }
+  
+  .myform{
+    background-color: lightblue ;
+    padding:20px;
+    border-radius:12px;
+  }
+  .myform lable{ background-color:lightblue!important
+  }
+  
