@@ -1,16 +1,16 @@
 
-import MyFooter from "./components/footer";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/home";
-import ErrorPage from "./pages/error";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import Profile from "./pages/profile";
-import RouteGuard from "./components/routguard";
+import Home from "./pages/Home";
+import ErrorPage from "./pages/Error";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile";
+import RouteGuard from "./components/Routguard";
 import Favorites from "./pages/Favorites";
-import CreateCard from "./pages/createCard";
-import CardDetails from "./pages/cardDetails";
+import CreateCard from "./pages/CreateCard";
+import CardDetails from "./pages/CardDetails";
 
 function App() {
   return (
@@ -46,7 +46,7 @@ function App() {
       </Routes>
 
       <br></br>
-      <MyFooter></MyFooter>
+      <Footer></Footer>
 
     </>
   );

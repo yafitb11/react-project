@@ -1,6 +1,6 @@
 import { IoInformationCircleSharp } from "react-icons/io5";
 
-const MyFooter = () => {
+const Footer = () => {
     return (
         <div className="flex flex-col items-center dark:text-white dark:bg-black">
             <IoInformationCircleSharp className="text-2xl"></IoInformationCircleSharp>
@@ -10,4 +10,4 @@ const MyFooter = () => {
 
 }
 
-export default MyFooter;
+export default Footer;
