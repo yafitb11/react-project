@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/userSlice";
 import { TRootState } from "../store/store";
 import { searchActions } from "../store/searchSlice";
+import { IoSearchSharp } from "react-icons/io5";
 
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: TRootState) => state.userSlice.user);
-
-  const search = (e: React.ChangeEvent<HTMLInputElement>) => { dispatch(searchActions.setSearchWord(e.target.value)) }
 
   return (
     <Navbar fluid rounded className="bg-slate-800">
@@ -20,7 +19,10 @@ const Header = () => {
       </Navbar.Brand>
 
       <Navbar.Brand>
-        <TextInput type="search" onInput={search}></TextInput>
+        <TextInput
+          rightIcon={IoSearchSharp}
+          type="search" onChange={(e) =>
+            dispatch(searchActions.setSearchWord(e.target.value))}></TextInput>
       </Navbar.Brand>
 
       <Navbar.Toggle />
@@ -33,10 +35,11 @@ const Header = () => {
           Sign In
         </Navbar.Link>
 
-        <Navbar.Link className="cursor-pointer text-white"
-          onClick={() => dispatch(userActions.logout())}>
-          Sign Out
-        </Navbar.Link>
+        {user !== null && (
+          <Navbar.Link className="cursor-pointer text-white"
+            onClick={() => dispatch(userActions.logout())}>
+            Sign Out
+          </Navbar.Link>)}
 
         {user !== null && (
           <Navbar.Link as={Link} to={"/profile"} href="/profile" className="text-white">
