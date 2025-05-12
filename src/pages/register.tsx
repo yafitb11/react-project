@@ -30,7 +30,7 @@ type FormData = {
 };
 
 
-export default function App() {
+export default function Register() {
     const {
         register,
         handleSubmit,
@@ -265,9 +265,9 @@ export default function App() {
                     <p style={{ color: "#057A55" }}>are you a business?</p>
                     <Radio
                         id="yes"
-                        value="yes"
+                        value="true"
                         {...register('isBusiness', {
-                            setValueAs: (val) => val === 'yes',
+                            setValueAs: (val) => val === "true",
                         })}
                     />
                     <Label htmlFor="option1" style={{ color: "#057A55" }}>yes</Label>
@@ -275,10 +275,8 @@ export default function App() {
 
                     <Radio
                         id="no"
-                        value="no"
-                        {...register('isBusiness', {
-                            setValueAs: (val) => val === 'yes',
-                        })}
+                        value="false"
+                        {...register('isBusiness')}
                     />
                     <Label htmlFor="option2" style={{ color: "#057A55" }}>no</Label>
 

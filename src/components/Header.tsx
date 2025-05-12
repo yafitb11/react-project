@@ -35,6 +35,11 @@ const Header = () => {
           Sign In
         </Navbar.Link>
 
+        <Navbar.Link as={Link} to={"/register"} href="/register" className="text-white">
+          Register
+        </Navbar.Link>
+
+
         {user !== null && (
           <Navbar.Link className="cursor-pointer text-white"
             onClick={() => dispatch(userActions.logout())}>
