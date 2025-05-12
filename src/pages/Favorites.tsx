@@ -34,7 +34,7 @@ const Favorites = () => {
         };
 
         fetchCards();
-    }, []);
+    }, [user?._id]);
 
 
     const filterCards = () => {

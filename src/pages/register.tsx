@@ -24,9 +24,9 @@ type FormData = {
         city: string,
         street: string,
         houseNumber: number,
-        zip: number
+        zip: number,
     },
-    isBusiness: boolean
+    isBusiness: boolean,
 };
 
 
@@ -55,9 +55,9 @@ export default function Register() {
                 city: "",
                 street: "",
                 houseNumber: 0,
-                zip: 0
+                zip: 0,
             },
-            isBusiness: true
+            isBusiness: true,
         },
         mode: "onChange",
         resolver: joiResolver(registerSchema),
@@ -266,6 +266,7 @@ export default function Register() {
                     <Radio
                         id="yes"
                         value="true"
+                        defaultChecked
                         {...register('isBusiness', {
                             setValueAs: (val) => val === "true",
                         })}
@@ -276,7 +277,9 @@ export default function Register() {
                     <Radio
                         id="no"
                         value="false"
-                        {...register('isBusiness')}
+                        {...register('isBusiness', {
+                            setValueAs: (val) => val === "true",
+                        })}
                     />
                     <Label htmlFor="option2" style={{ color: "#057A55" }}>no</Label>
 
