@@ -1,8 +1,7 @@
-import { useSelector } from "react-redux";
-import { TRootState } from "../store/store";
+import useAuth from "../hooks/useAuth";
 
 const Profile = () => {
-    const user = useSelector((state: TRootState) => state.userSlice.user);
+    const { user } = useAuth();
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-start gap-2">

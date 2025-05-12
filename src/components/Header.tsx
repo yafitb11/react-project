@@ -1,14 +1,14 @@
 import { Navbar, TextInput } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userActions } from "../store/userSlice";
-import { TRootState } from "../store/store";
 import { searchActions } from "../store/searchSlice";
 import { IoSearchSharp } from "react-icons/io5";
+import useAuth from "../hooks/useAuth";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state: TRootState) => state.userSlice.user);
+  const { user } = useAuth();
 
   return (
     <Navbar fluid rounded className="bg-slate-800">

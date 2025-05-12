@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { TRootState } from "./../store/store";
 import { Tcard } from "../types/cardType";
+import useAuth from "../hooks/useAuth";
 
 const Favorites = () => {
     const [cards, setCards] = useState<Tcard[]>([]);
@@ -13,7 +14,7 @@ const Favorites = () => {
 
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord)
 
-    const user = useSelector((state: TRootState) => state.userSlice.user);
+    const { user } = useAuth();
 
     useEffect(() => {
         const fetchCards = async () => {

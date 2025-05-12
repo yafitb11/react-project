@@ -2,14 +2,11 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { Button, FloatingLabel } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { SignInJoiSchema } from "../validations/SigninSchema.joi";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import { userActions } from "../store/userSlice";
-import { jwtDecode } from "jwt-decode";
+import useAuth from "../hooks/useAuth";
+
 
 export default function Login() {
-    const dispatch = useDispatch();
+
     const initialFormData = {
         email: "",
         password: "",
@@ -21,39 +18,12 @@ export default function Login() {
         resolver: joiResolver(SignInJoiSchema),
     });
 
-    const submit = async (form: typeof initialFormData) => {
-        try {
-            const token = await axios.post(
-                "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/login",
-                form,
-            );
-            console.log(token.data);
-            localStorage.setItem("token", token.data);
-            toast.success("Sign In Successful");
-
-            const parsedToken = jwtDecode(token.data) as {
-                _id: string;
-            };
-
-            axios.defaults.headers.common["x-auth-token"] = token.data;
-
-            const res = await axios.get(
-                "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/" +
-                parsedToken._id,
-            );
-
-
-            dispatch(userActions.login(res.data));
-        } catch (error) {
-            console.log(error);
-            toast.error("Sign In Failed");
-        }
-    };
+    const { login } = useAuth();
 
     return (
         <form
             className="m-auto mt-20 flex w-2/5 flex-col gap-4 rounded-lg p-4 shadow-lg"
-            onSubmit={handleSubmit(submit)}
+            onSubmit={handleSubmit(login)}
         >
             <h1 className="text-2xl font-bold text-gray-800">Sign In</h1>
             <FloatingLabel

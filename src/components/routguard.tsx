@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { TRootState } from "../store/store";
 import { Navigate } from "react-router-dom";
 import { ReactNode } from "react";
+import useAuth from "../hooks/useAuth";
 
 type RouteGuardProps = {
     children: ReactNode;
@@ -13,7 +12,7 @@ type RouteGuardProps = {
 const RouteGuard = (props: RouteGuardProps) => {
     const { children, isBiz, isAdmin } = props;
 
-    const user = useSelector((state: TRootState) => state.userSlice.user);
+    const { user } = useAuth();
 
     if (!user) {
         return (
