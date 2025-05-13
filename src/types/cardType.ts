@@ -13,10 +13,12 @@ export type Tcard = {
         alt: string,
     },
     address: {
+        state: string,
         country: string,
         city: string,
         street: string,
         houseNumber: number,
+        zip: number,
     },
     bizNumber: number,
 }
