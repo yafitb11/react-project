@@ -5,7 +5,7 @@ import { SignInJoiSchema } from "../validations/SigninSchema.joi";
 import useAuth from "../hooks/useAuth";
 
 
-export default function Login() {
+export default function SignIn() {
 
     const initialFormData = {
         email: "",

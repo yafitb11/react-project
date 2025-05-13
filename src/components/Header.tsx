@@ -65,6 +65,11 @@ const Header = () => {
           </Navbar.Link>
         )}
 
+        {user && user.isAdmin && (
+          <Navbar.Link as={Link} to={"/manage-users"} href="/manage-users" className="text-white">
+            Manage Users
+          </Navbar.Link>
+        )}
 
       </Navbar.Collapse>
     </Navbar>
