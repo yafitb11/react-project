@@ -14,23 +14,18 @@ const ManageUsers = () => {
 
     useEffect(() => {
         const getUsers = async () => {
+            console.log("helloe");
+
             try {
                 setspiner(true)
-                const adminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBhZTc1OWRiMzgxM2E2NTAyZmMyZmMiLCJpc0J1c2luZXNzIjp0cnVlLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTg4NDI5NTJ9.En62ry5Gu9FMBAvxyltv0eRYhpJIJs_aW06QAtxXRck";
-
                 const token = localStorage.getItem("token");
 
-                if (adminToken == token) {
-                    axios.defaults.headers.common["x-auth-token"] = token;
-                    const response = await axios.get("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users",);
-                    setUsers(response.data);
-                } else {
-                    return (<>
-                        <h1>you are not an admin!</h1>
-                    </>)
-                }
+                axios.defaults.headers.common["x-auth-token"] = token;
+                const response = await axios.get("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users",);
+                setUsers(response.data);
+
             } catch (error) {
-                console.error("Error fetching cards:", error);
+                console.error("Error fetching users:", error);
                 toast.error("something's wrong");
             } finally { setspiner(false) }
         };
@@ -40,8 +35,7 @@ const ManageUsers = () => {
 
     return (
         <div className="flex flex-col items-center justify-start gap-2">
-            <h1 className="text-2xl">Home Page</h1>
-            <p className="text-lg">Welcome Home!</p>
+            <h1 className="text-2xl">Users Page</h1>
 
             {users?.map((user) => {
 
