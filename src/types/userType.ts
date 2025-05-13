@@ -22,4 +22,5 @@ export type Tuser = {
     },
     isBusiness: boolean;
     isAdmin: boolean;
+    createdAt: string;
 }

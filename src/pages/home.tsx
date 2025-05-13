@@ -91,9 +91,27 @@ const Home = () => {
             {cards && filterCards()?.map((card) => {
                 const isLiked = card.likes.includes(user?._id + "");
                 return (
-                    <Card key={card._id} id={card._id} className="h-[500px] w-1/4">
+                    <Card key={card._id} id={card._id} className="h-[500px] w-1/4 mycard" imgSrc={card.image.url}>
                         <h2>{card.title}</h2>
+                        <h5>{card.subtitle}</h5>
                         <p>{card.description}</p>
+                        <div className="border-t border-gray-300 m-0" ></div>
+                        <p className="font-normal text-gray-700 dark:text-gray-400">
+                            Phone: {card.phone}
+                        </p>
+                        <p className="font-normal text-gray-700 dark:text-gray-400">
+                            Email: {card.email}
+                        </p>
+                        <p className="font-normal text-gray-700 dark:text-gray-400">
+                            Web: {card.web}
+                        </p>
+                        <p className="font-normal text-gray-700 dark:text-gray-400">
+                            Adress: {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}
+                        </p>
+                        <p className="font-normal text-gray-700 dark:text-gray-400">
+                            BizNumber: {card.bizNumber}
+                        </p>
+
                         {user && (
                             <FaHeart className={`${isLiked ? "text-red-500" : "text-gray-500"} cursor-pointer`} onClick={() => likeOrUnlikeCard(card._id)}></FaHeart>
                         )}
