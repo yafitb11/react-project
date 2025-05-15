@@ -3,7 +3,6 @@ import { Button, FloatingLabel } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { newCardSchema } from "../validations/newCard.joi";
 import axios from "axios";
-import { Radio, Label } from 'flowbite-react';
 import { Tcard } from "../types/cardType";
 
 
@@ -38,6 +37,8 @@ export default function CreateCard() {
   const submitForm = async (data: Tcard) => {
     console.log("Card submitted", data);
     try {
+      const token = localStorage.getItem("token");
+      axios.defaults.headers.common["x-auth-token"] = token;
       const response = await axios.post(
         "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users", data);
       console.log("card created successfuly:", response.data);
@@ -53,45 +54,50 @@ export default function CreateCard() {
 
       <form onSubmit={handleSubmit(submitForm)} className="myform flex flex-col gap-4 align-middle w-[50%] ">
 
-        <fieldset className="flex gap-3 justify-center" >
-          <legend className="mb-1" style={{ color: "#057A55" }}>name</legend>
 
-          <FloatingLabel
-            {...register("name.first")}
-            variant="outlined"
-            label="First Name"
-            type="text"
-            color={errors.name?.first ? "error" : "success"}
 
-          />
-          {errors.name?.first && (
-            <p className="text-sm text-red-500">{errors.name.first.message}</p>
-          )}
-          <FloatingLabel
-            {...register("name.middle")}
-            variant="outlined"
-            label="Middle Name"
-            type="text"
-            color={errors.name?.middle ? "error" : "success"}
+        <FloatingLabel
+          {...register("title")}
+          variant="outlined"
+          label="title"
+          type="text"
+          color={errors.title ? "error" : "success"}
 
-          />
-          {errors.name?.middle && (
-            <p className="text-sm text-red-500">{errors.name.middle.message}</p>
-          )}
+        />
+        {errors.title && (
+          <p className="text-sm text-red-500">{errors.title.message}</p>
+        )}
 
-          <FloatingLabel
-            {...register("name.last")}
-            variant="outlined"
-            label="Last Name"
-            type="text"
-            color={errors.name?.last ? "error" : "success"}
 
-          />
-          {errors.name?.last && (
-            <p className="text-sm text-red-500">{errors.name.last.message}</p>
-          )}
+        <FloatingLabel
+          {...register("subtitle")}
+          variant="outlined"
+          label="subtitle"
+          type="text"
+          color={errors.subtitle ? "error" : "success"}
 
-        </fieldset>
+        />
+        {errors.subtitle && (
+          <p className="text-sm text-red-500">{errors.subtitle.message}</p>
+        )}
+
+
+
+        <textarea
+          {...register("description")}
+          rows={4}
+          className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "border-red-500" : "border-gray-300"
+            } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600`}
+        />
+        <label
+          className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        >
+          description
+        </label>
+        {errors.description && (
+          <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
+        )}
+
 
 
         <FloatingLabel
@@ -117,15 +123,16 @@ export default function CreateCard() {
         )}
 
         <FloatingLabel
-          {...register("password")}
+          {...register("web")}
           variant="outlined"
-          label="Password"
-          type="password"
-          color={errors.password ? "error" : "success"}
+          label="web"
+          type="text"
+          color={errors.web ? "error" : "success"}
         />
-        {errors.password && (
-          <p className="text-sm text-red-500">{errors.password.message}</p>
+        {errors.web && (
+          <p className="text-sm text-red-500">{errors.web.message}</p>
         )}
+
 
         <fieldset className="flex gap-3 justify-center">
           <legend className="mb-1" style={{ color: "#057A55" }}>image</legend>
@@ -212,7 +219,7 @@ export default function CreateCard() {
             {...register("address.houseNumber")}
             variant="outlined"
             label="houseNumber"
-            type="text"
+            type="number"
             color={errors.address?.houseNumber ? "error" : "success"}
           />
           {errors.address?.houseNumber && (
@@ -224,7 +231,7 @@ export default function CreateCard() {
             {...register("address.zip")}
             variant="outlined"
             label="zip"
-            type="text"
+            type="number"
             color={errors.address?.zip ? "error" : "success"}
           />
           {errors.address?.zip && (
@@ -233,30 +240,16 @@ export default function CreateCard() {
 
         </fieldset>
 
-        <div className="flex gap-3 justify-center">
-          <p style={{ color: "#057A55" }}>are you a business?</p>
-          <Radio
-            id="yes"
-            value="true"
-            defaultChecked
-            {...register('isBusiness', {
-              setValueAs: (val) => val === "true",
-            })}
-          />
-          <Label htmlFor="option1" style={{ color: "#057A55" }}>yes</Label>
-
-
-          <Radio
-            id="no"
-            value="false"
-            {...register('isBusiness', {
-              setValueAs: (val) => val === "true",
-            })}
-          />
-          <Label htmlFor="option2" style={{ color: "#057A55" }}>no</Label>
-
-
-        </div>
+        <FloatingLabel
+          {...register("bizNumber")}
+          variant="outlined"
+          label="buzNumber"
+          type="number"
+          color={errors.bizNumber ? "error" : "success"}
+        />
+        {errors.bizNumber && (
+          <p className="text-sm text-red-500">{errors.bizNumber.message}</p>
+        )}
 
 
         <Button type="submit" className="w-full" disabled={!isValid}>
@@ -267,3 +260,18 @@ export default function CreateCard() {
   );
 }
 
+/*
+   
+  <FloatingLabel
+{...register("description")}
+variant="outlined"
+        label="description"
+        type="text"
+        color={errors.description ? "error" : "success"}
+        
+      />
+      {errors.description && (
+        <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
+      )}
+        
+      */
