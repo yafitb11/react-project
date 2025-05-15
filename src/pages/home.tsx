@@ -84,35 +84,25 @@ const Home = () => {
 
 
     return (
-        <div className="flex flex-col items-center justify-start gap-2">
+        <div className="flex flex-col items-center justify-start gap-2 bg-slate-400">
             <h1 className="text-2xl">Home Page</h1>
             <p className="text-lg">Welcome Home!</p>
 
-            <div className="flex gap-3 flex-wrap p-3 justify-center">
+            <div className="flex gap-3 flex-wrap p-3 justify-center bg-slate-600">
                 {cards && filterCards()?.map((card) => {
                     const isLiked = card.likes.includes(user?._id + "");
                     return (
                         <Card key={card._id} id={card._id} className="h-[500px] w-1/4 mycard" imgSrc={card.image.url}>
-                            <h2>{card.title}</h2>
-                            <h5>{card.subtitle}</h5>
-                            <p>{card.description}</p>
-                            <div className="border-t border-gray-300 m-0" ></div>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">
-                                Phone: {card.phone}
-                            </p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">
-                                Email: {card.email}
-                            </p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">
-                                Web: {card.web}
-                            </p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">
-                                Adress: {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}
-                            </p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">
-                                BizNumber: {card.bizNumber}
-                            </p>
-
+                            <div>
+                                <h2>{card.title}</h2>
+                                <h5>{card.subtitle}</h5>
+                                <p>{card.description}</p>
+                                <p> Phone: {card.phone} </p>
+                                <p> Email: {card.email} </p>
+                                <p> Web: {card.web} </p>
+                                <p> Adress: {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}</p>
+                                <p> BizNumber: {card.bizNumber}</p>
+                            </div>
                             {user && (
                                 <FaHeart className={`${isLiked ? "text-red-500" : "text-gray-500"} cursor-pointer`} onClick={() => likeOrUnlikeCard(card._id)}></FaHeart>
                             )}
