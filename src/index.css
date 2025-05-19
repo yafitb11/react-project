@@ -46,10 +46,16 @@ background-color: lightgray;
 
 
   .myform{
+    display: flex;
+  flex-direction: column;
+justify-content: center;  
+  gap: 1rem; 
     background-color: lightblue ;
     padding:20px;
     border-radius:12px;
+    @apply shadow-lg;
   }
-  .myform lable{ background-color:lightblue!important
+  .myform label{ background-color:lightblue!important
   }
   
+.myform > h1{text-align:center}

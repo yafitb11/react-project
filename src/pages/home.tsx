@@ -69,7 +69,6 @@ const Home = () => {
                     card.likes = [...card.likes, user?._id + ""];
                     const cardIndex = cardsArr.findIndex((card) => card._id === cardId);
                     cardsArr[cardIndex] = card;
-                    //  cardsArr = [...cardsArr, card]; זה טוב לפייבוריטס, מוסיף כרטיס נוסף בסוף, אבל לא טוב למסך הכללי
                     toast.success("Card liked successfully");
                 }
 

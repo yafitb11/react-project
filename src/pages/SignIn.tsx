@@ -20,6 +20,8 @@ export default function SignIn() {
 
     const { login } = useAuth();
 
+    //m-auto mt-20 flex w-2/5 flex-col gap-4 rounded-lg p-4 shadow-lg"
+
     return (
         <form
             className="m-auto mt-20 flex w-2/5 flex-col gap-4 rounded-lg p-4 shadow-lg"

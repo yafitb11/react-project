@@ -31,9 +31,9 @@ const Header = () => {
           Home
         </Navbar.Link>
 
-        <Navbar.Link as={Link} to={"/signin"} href="/signin" className="text-white">
+        {!user && (<Navbar.Link as={Link} to={"/signin"} href="/signin" className="text-white">
           Sign In
-        </Navbar.Link>
+        </Navbar.Link>)}
 
         {!user && (
           <Navbar.Link as={Link} to={"/register"} href="/register" className="text-white">
