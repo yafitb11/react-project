@@ -5,10 +5,10 @@ import { newCardSchema } from "../validations/newCard.joi";
 import axios from "axios";
 import { Tcard } from "../types/cardType";
 
-
+import { useEffect } from "react";
 
 export default function CreateCard() {
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm<Tcard>({
+  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm<Tcard>({
     defaultValues: {
       title: "",
       subtitle: "",
@@ -28,11 +28,17 @@ export default function CreateCard() {
         houseNumber: 0,
         zip: 0,
       },
-      bizNumber: 0,
     },
     mode: "onChange",
     resolver: joiResolver(newCardSchema),
   });
+
+
+  useEffect(() => {
+    console.log("Form Values:", watch());
+    console.log("Form Errors:", errors);
+    console.log("Form isValid:", isValid);
+  }, [watch(), errors, isValid]);
 
   const submitForm = async (data: Tcard) => {
     console.log("Card submitted", data);
@@ -40,7 +46,7 @@ export default function CreateCard() {
       const token = localStorage.getItem("token");
       axios.defaults.headers.common["x-auth-token"] = token;
       const response = await axios.post(
-        "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users", data);
+        "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards", data);
       console.log("card created successfuly:", response.data);
     } catch (error) {
       console.log("Error registering:", error);
@@ -82,22 +88,17 @@ export default function CreateCard() {
         )}
 
 
-
-        <textarea
+        <FloatingLabel
           {...register("description")}
-          rows={4}
-          className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "border-red-500" : "border-gray-300"
-            } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600`}
+          variant="outlined"
+          label="description"
+          type="text"
+          color={errors.description ? "error" : "success"}
+
         />
-        <label
-          className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
-        >
-          description
-        </label>
         {errors.description && (
           <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
         )}
-
 
 
         <FloatingLabel
@@ -240,17 +241,6 @@ export default function CreateCard() {
 
         </fieldset>
 
-        <FloatingLabel
-          {...register("bizNumber")}
-          variant="outlined"
-          label="buzNumber"
-          type="number"
-          color={errors.bizNumber ? "error" : "success"}
-        />
-        {errors.bizNumber && (
-          <p className="text-sm text-red-500">{errors.bizNumber.message}</p>
-        )}
-
 
         <Button type="submit" className="w-full" disabled={!isValid}>
           Submit
@@ -274,4 +264,24 @@ variant="outlined"
         <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
       )}
         
+///////////////////
+
+
+        <textarea
+          {...register("description")}
+          rows={4}
+          className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "border-red-500" : "border-gray-300"
+            } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600`}
+        />
+        <label
+          className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
+        >
+          description
+        </label>
+        {errors.description && (
+          <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
+        )}
+
+
+
       */

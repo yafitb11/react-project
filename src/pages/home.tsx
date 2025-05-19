@@ -88,7 +88,7 @@ const Home = () => {
             <h1 className="text-2xl">Home Page</h1>
             <p className="text-lg">Welcome Home!</p>
 
-            <div className="flex gap-3 flex-wrap p-3 justify-center bg-slate-600">
+            <div className="w-[100%] flex gap-3 flex-wrap p-3 justify-center bg-slate-600">
                 {cards && filterCards()?.map((card) => {
                     const isLiked = card.likes.includes(user?._id + "");
                     return (
@@ -100,7 +100,7 @@ const Home = () => {
                                 <p> Phone: {card.phone} </p>
                                 <p> Email: {card.email} </p>
                                 <p> Web: {card.web} </p>
-                                <p> Adress: {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}</p>
+                                <p> Adress: {card.address.state}  {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}</p>
                                 <p> BizNumber: {card.bizNumber}</p>
                             </div>
                             {user && (

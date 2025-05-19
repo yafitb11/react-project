@@ -33,7 +33,7 @@ export const newCardSchema = Joi.object({
             city: Joi.string().required(),
             street: Joi.string().required(),
             houseNumber: Joi.number().required(),
-            zip: Joi.number().allow(),
+            zip: Joi.number().allow(null),
         })
         .required(),
 
