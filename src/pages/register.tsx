@@ -46,9 +46,9 @@ export default function Register() {
             const response = await axios.post(
                 "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users", data);
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 toast.success("you have registered successfully", { autoClose: 2000, });
-                setTimeout(() => navigate('/'), 2500);
+                navigate('/');
             }
 
 

@@ -12,6 +12,7 @@ import Favorites from "./pages/Favorites";
 import CreateCard from "./pages/CreateCard";
 import CardDetails from "./pages/CardDetails";
 import ManageUsers from "./pages/ManageUsers";
+import MyCards from "./pages/MyCards";
 
 function App() {
   return (
@@ -38,6 +39,10 @@ function App() {
 
         <Route path="/profile" element={<RouteGuard>
           <Favorites />
+        </RouteGuard>}></Route>
+
+        <Route path="/my-cards" element={<RouteGuard>
+          <MyCards />
         </RouteGuard>}></Route>
 
         <Route path="/create-card" element={<RouteGuard isBiz={true}>

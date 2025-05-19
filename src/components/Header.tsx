@@ -60,6 +60,12 @@ const Header = () => {
           </Navbar.Link>
         )}
 
+        {user !== null && (
+          <Navbar.Link as={Link} to={"/my-cards"} href="/my-cards" className="text-white">
+            My Cards
+          </Navbar.Link>
+        )}
+
         {user && user.isBusiness && (
           <Navbar.Link as={Link} to={"/create-card"} href="/create-card" className="text-white">
             Create Card

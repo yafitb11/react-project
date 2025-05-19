@@ -8,8 +8,13 @@ import { Tcard } from "../types/cardType";
 import { FaHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { userActions } from "../store/userSlice";
+
 
 const Home = () => {
+    const dispatch = useDispatch();
     const [cards, setCards] = useState<Tcard[]>([]);
     const nav = useNavigate();
     const [spiner, setspiner] = useState<boolean>(false);
@@ -33,6 +38,29 @@ const Home = () => {
         fetchCards();
     }, []);
 
+    const token = localStorage.getItem("token");
+
+    const autoLogIn = async () => {
+        if (token) {
+            const parsedToken = jwtDecode(token) as {
+                _id: string;
+            };
+            axios.defaults.headers.common["x-auth-token"] = token;
+            try {
+                const response = await axios.get(
+                    "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/" +
+                    parsedToken._id,
+                );
+
+                dispatch(userActions.login(response.data));
+            } catch (error) {
+                console.log(error);
+                toast.error("Sign In Failed");
+            }
+        }
+    }
+
+    autoLogIn();
 
     const filterCards = () => {
         if (cards) {
@@ -47,7 +75,6 @@ const Home = () => {
 
     const likeOrUnlikeCard = async (cardId: string) => {
         try {
-            const token = localStorage.getItem("token");
 
             axios.defaults.headers.common["x-auth-token"] = token;
             await axios.patch(

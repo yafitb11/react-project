@@ -21,4 +21,6 @@ export type Tcard = {
         zip: number,
     },
     bizNumber: number,
+    user_id: string,
+    createdAt: string,
 }
