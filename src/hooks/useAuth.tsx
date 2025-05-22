@@ -24,7 +24,6 @@ const useAuth = () => {
             const parsedToken = jwtDecode(token.data) as {
                 _id: string;
             };
-            console.log(parsedToken);
 
             axios.defaults.headers.common["x-auth-token"] = token.data;
 
@@ -32,10 +31,11 @@ const useAuth = () => {
                 "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/" +
                 parsedToken._id,
             );
+            console.log(res.status);
 
             dispatch(userActions.login(res.data));
 
-            if (res.status === 201) {
+            if (res.status === 200) {
                 toast.success("Sign In Succseeded", { autoClose: 2000, });
                 navigate('/');
             }
