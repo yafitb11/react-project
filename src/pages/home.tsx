@@ -8,19 +8,16 @@ import { Tcard } from "../types/cardType";
 import { FaHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
-import { jwtDecode } from "jwt-decode";
-import { useDispatch } from "react-redux";
-import { userActions } from "../store/userSlice";
 
 
 const Home = () => {
-    const dispatch = useDispatch();
     const [cards, setCards] = useState<Tcard[]>([]);
     const nav = useNavigate();
     const [spiner, setspiner] = useState<boolean>(false);
 
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord);
-    const { user } = useAuth();
+    const { user, autoLogIn } = useAuth();
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
         const fetchCards = async () => {
@@ -38,29 +35,7 @@ const Home = () => {
         fetchCards();
     }, []);
 
-    const token = localStorage.getItem("token");
-
-    const autoLogIn = async () => {
-        if (token) {
-            const parsedToken = jwtDecode(token) as {
-                _id: string;
-            };
-            axios.defaults.headers.common["x-auth-token"] = token;
-            try {
-                const response = await axios.get(
-                    "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/" +
-                    parsedToken._id,
-                );
-
-                dispatch(userActions.login(response.data));
-            } catch (error) {
-                console.log(error);
-                toast.error("Sign In Failed");
-            }
-        }
-    }
-
-    autoLogIn();
+    { !user && autoLogIn(); }
 
     const filterCards = () => {
         if (cards) {
@@ -148,62 +123,3 @@ const Home = () => {
 
 export default Home;
 
-
-/*
-
-      {cards &&
-        cards.map((card) => (
-          <Card key={card._id}>
-            <h2>{card.title}</h2>
-            <Button onClick={() => nav("/card/" + card._id)}>Click</Button>
-          </Card>
-        ))}
-          
-זה בשביל להראות את כל הקלפים
-        */
-
-/*
-
-    return (
-
-        <div className=" bg-blue-200 text-center p-3">
-            <h1 className="text-3xl font-medium mb-2">Cards Page</h1>
-            <h2 className="text-xl">here you can find business cards from al categories:</h2>
-
-
-            <div className="flex gap-2 flex-wrap p-3 justify-center">
-                {cards.map((card) => (
-                    <Card key={card._id} className="max-w-sm mycard" imgSrc={card.image.url}>
-                        <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            {card.title}
-                        </h3>
-                        <h5>{card.subtitle}</h5>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">{card.description}</p>
-                        <div className="border-t border-gray-300 m-0" ></div>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            Phone: {card.phone}
-                        </p>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            Email: {card.email}
-                        </p>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            Web: {card.web}
-                        </p>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            Adress: {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}
-                        </p>
-                        <p className="font-normal text-gray-700 dark:text-gray-400">
-                            BizNumber: {card.bizNumber}
-                        </p>
-
-                    </Card>
-                ))}
-
-
-            </div>
-
-
-        </div>
-    )
-}
-*/

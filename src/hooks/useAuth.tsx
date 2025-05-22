@@ -12,6 +12,30 @@ const useAuth = () => {
     const navigate = useNavigate();
 
 
+    const autoLogIn = async () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            const parsedToken = jwtDecode(token) as {
+                _id: string;
+            };
+            axios.defaults.headers.common["x-auth-token"] = token;
+            try {
+                const response = await axios.get(
+                    "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/" +
+                    parsedToken._id,
+                );
+
+                dispatch(userActions.login(response.data));
+                console.log("succsess");
+
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
+
     const login = async (form: { email: string, password: string }) => {
         try {
             const token = await axios.post(
@@ -21,24 +45,9 @@ const useAuth = () => {
             console.log(token.data);
             localStorage.setItem("token", token.data);
 
-            const parsedToken = jwtDecode(token.data) as {
-                _id: string;
-            };
-
-            axios.defaults.headers.common["x-auth-token"] = token.data;
-
-            const res = await axios.get(
-                "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/" +
-                parsedToken._id,
-            );
-            console.log(res.status);
-
-            dispatch(userActions.login(res.data));
-
-            if (res.status === 200) {
-                toast.success("Sign In Succseeded", { autoClose: 2000, });
-                navigate('/');
-            }
+            autoLogIn();
+            toast.success("Sign In Succseeded", { autoClose: 2000, });
+            navigate('/');
 
         } catch (error) {
             console.log(error);
@@ -46,7 +55,7 @@ const useAuth = () => {
         }
     };
 
-    return { user, login }
+    return { user, autoLogIn, login }
 };
 
 export default useAuth;

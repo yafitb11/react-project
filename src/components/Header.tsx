@@ -43,7 +43,10 @@ const Header = () => {
 
         {user !== null && (
           <Navbar.Link className="cursor-pointer text-white"
-            onClick={() => dispatch(userActions.logout())}>
+            onClick={() => {
+              dispatch(userActions.logout());
+              localStorage.setItem("token", "");
+            }}>
             Sign Out
           </Navbar.Link>)}
 
