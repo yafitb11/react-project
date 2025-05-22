@@ -37,7 +37,7 @@ function App() {
           <Profile />
         </RouteGuard>}></Route>
 
-        <Route path="/profile" element={<RouteGuard>
+        <Route path="/favorites" element={<RouteGuard>
           <Favorites />
         </RouteGuard>}></Route>
 
