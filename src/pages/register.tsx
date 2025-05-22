@@ -51,8 +51,6 @@ export default function Register() {
                 navigate('/');
             }
 
-
-
         } catch (error) {
             console.log("Error registering:", error);
             toast.error("something went wrong", { autoClose: 2000, });
