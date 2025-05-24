@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tcard } from "../types/cardType";
 import useAuth from "../hooks/useAuth";
+import { MdEdit, MdDelete } from "react-icons/md";
 
 const MyCards = () => {
     const [cards, setCards] = useState<Tcard[]>([]);
@@ -44,7 +45,11 @@ const MyCards = () => {
                 <Card key={card._id} id={card._id} className="h-[500px] w-1/4">
                     <h2>{card.title}</h2>
                     <p>{card.description}</p>
-                    <Button onClick={() => nav("/card/" + card._id)}>Click</Button>
+                    <Button onClick={() => nav("/card/" + card._id)}>view and edit</Button>
+                    <div>
+                        <MdEdit></MdEdit>
+                        <MdDelete></MdDelete>
+                    </div>
                 </Card>
             ))}
 

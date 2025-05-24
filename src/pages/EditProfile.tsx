@@ -46,13 +46,15 @@ export default function EditProfile() {
 
         try {
             const token = localStorage.getItem("token");
+            console.log(token)
             axios.defaults.headers.common["x-auth-token"] = token;
-            const response = await axios.post(
+            const response = await axios.put(
                 "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/6559f2dbdedf2db2b52bde42", data);
+            console.log(response.status);
 
             if (response.status === 201) {
-                toast.success("you have registered successfully", { autoClose: 2000, });
-                navigate('/');
+                toast.success("editing was successful", { autoClose: 2000, });
+                navigate('/profile');
             }
 
         } catch (error) {
