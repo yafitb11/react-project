@@ -1,50 +1,54 @@
 import { joiResolver } from "@hookform/resolvers/joi";
 import { Button, FloatingLabel } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { registerSchema } from "../validations/register.joi";
+import { editUserSchema } from "../validations/editUser.joi";
 import axios from "axios";
-import { Radio, Label } from 'flowbite-react';
 import { FormData } from "../types/formData";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function EditProfile() {
+    const { user } = useAuth();
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors, isValid },
     } = useForm<FormData>({
         defaultValues: {
             name: {
-                first: "",
-                middle: "",
-                last: ""
+                first: user?.name.first,
+                middle: user?.name.middle,
+                last: user?.name.last,
             },
-            phone: 0,
-            email: "",
-            password: "",
+            phone: user?.phone,
+            email: user?.email,
+            password: user?.password,
             image: {
-                url: "",
-                alt: ""
+                url: user?.image.url,
+                alt: user?.image.alt,
             },
             address: {
-                state: "",
-                country: "",
-                city: "",
-                street: "",
-                houseNumber: 0,
-                zip: 0,
+                state: user?.address.state,
+                country: user?.address.country,
+                city: user?.address.city,
+                street: user?.address.street,
+                houseNumber: user?.address.houseNumber,
+                zip: user?.address.zip,
             },
 
         },
         mode: "onChange",
-        resolver: joiResolver(registerSchema),
+        resolver: joiResolver(editUserSchema),
     });
 
     const submitForm = async (data: FormData) => {
         console.log(data);
 
+
         try {
+            const token = localStorage.getItem("token");
+            axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.post(
-                "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users", data);
+                "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/6559f2dbdedf2db2b52bde42", data);
 
             if (response.status === 201) {
                 toast.success("you have registered successfully", { autoClose: 2000, });
