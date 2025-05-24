@@ -1,8 +1,12 @@
 import { Button, Card } from "flowbite-react";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
     const { user } = useAuth();
+    const navigate = useNavigate();
+
+    const moveToEditProfilePage = () => { navigate('/edit-profile'); }
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-start gap-2">
@@ -19,7 +23,7 @@ const Profile = () => {
 
             </Card>}
 
-            <Button>Edit your details</Button>
+            <Button onClick={moveToEditProfilePage}>Edit your details</Button>
         </div>
     );
 };

@@ -13,6 +13,7 @@ import CreateCard from "./pages/CreateCard";
 import CardDetails from "./pages/CardDetails";
 import ManageUsers from "./pages/ManageUsers";
 import MyCards from "./pages/MyCards";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (
@@ -52,6 +53,10 @@ function App() {
         <Route path="/manage-users" element={<RouteGuard isAdmin={true}>
           <ManageUsers />
         </RouteGuard>}></Route>
+
+        <Route path="/edit-profile" element={<EditProfile />}></Route>
+
+
 
 
       </Routes>

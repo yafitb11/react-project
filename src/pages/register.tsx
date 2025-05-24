@@ -40,7 +40,6 @@ export default function Register() {
     });
 
     const submitForm = async (data: FormData) => {
-        console.log(data);
 
         try {
             const response = await axios.post(
