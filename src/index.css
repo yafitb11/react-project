@@ -53,9 +53,10 @@ justify-content: center;
     background-color: lightblue ;
     padding:20px;
     border-radius:12px;
-    @apply shadow-lg;
+    @apply shadow-lg ;
   }
-  .myform label{ background-color:lightblue!important
+  .myform label{
+     background-color:lightblue!important;
   }
   
 .myform > h1{text-align:center}

@@ -5,10 +5,8 @@ import { newCardSchema } from "../validations/newCard.joi";
 import axios from "axios";
 import { Tcard } from "../types/cardType";
 
-import { useEffect } from "react";
-
 export default function CreateCard() {
-  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm<Tcard>({
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm<Tcard>({
     defaultValues: {
       title: "",
       subtitle: "",
@@ -33,13 +31,6 @@ export default function CreateCard() {
     resolver: joiResolver(newCardSchema),
   });
 
-
-  useEffect(() => {
-    console.log("Form Values:", watch());
-    console.log("Form Errors:", errors);
-    console.log("Form isValid:", isValid);
-  }, [watch(), errors, isValid]);
-
   const submitForm = async (data: Tcard) => {
     console.log("Card submitted", data);
     try {
@@ -54,13 +45,10 @@ export default function CreateCard() {
   };
 
 
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
 
       <form onSubmit={handleSubmit(submitForm)} className="myform flex flex-col gap-4 align-middle w-[50%] ">
-
-
 
         <FloatingLabel
           {...register("title")}
@@ -87,19 +75,17 @@ export default function CreateCard() {
           <p className="text-sm text-red-500">{errors.subtitle.message}</p>
         )}
 
-
-        <FloatingLabel
-          {...register("description")}
-          variant="outlined"
-          label="description"
-          type="text"
-          color={errors.description ? "error" : "success"}
-
-        />
-        {errors.description && (
-          <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
-        )}
-
+        <div className="relative w-full" id="textAreaDiv">
+          <textarea   {...register("description")} id="tdescription" placeholder=" "
+            rows={3} style={{ backgroundColor: "lightblue" }}
+            className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "border-red-500" : "border-green-600"
+              } appearance-none focus:outline-none focus:ring-0 focus:border-green-600`}
+          />
+          <label htmlFor="tdescription" className="absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"> description </label>
+          {errors.description && (
+            <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
+          )}
+        </div>
 
         <FloatingLabel
           {...register("phone")}
@@ -149,7 +135,6 @@ export default function CreateCard() {
             <p className="text-sm text-red-500">{errors.image.url.message}</p>
           )}
 
-
           <FloatingLabel
             {...register("image.alt")}
             variant="outlined"
@@ -162,7 +147,6 @@ export default function CreateCard() {
           )}
 
         </fieldset>
-
 
 
         <fieldset className="flex gap-3 flex-wrap justify-center">

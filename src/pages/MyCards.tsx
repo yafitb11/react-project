@@ -43,8 +43,16 @@ const MyCards = () => {
 
             {cards?.map((card) => (
                 <Card key={card._id} id={card._id} className="h-[500px] w-1/4">
-                    <h2>{card.title}</h2>
-                    <p>{card.description}</p>
+                    <div>
+                        <h2>{card.title}</h2>
+                        <h5>{card.subtitle}</h5>
+                        <p>{card.description}</p>
+                        <p> Phone: {card.phone} </p>
+                        <p> Email: {card.email} </p>
+                        <p> Web: {card.web} </p>
+                        <p> Adress: {card.address.state}  {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}</p>
+                        <p> BizNumber: {card.bizNumber}</p>
+                    </div>
                     <Button onClick={() => nav("/card/" + card._id)}>view and edit</Button>
                     <div>
                         <MdEdit></MdEdit>
