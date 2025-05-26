@@ -9,7 +9,7 @@ import { MdEdit, MdDelete } from "react-icons/md";
 const MyCards = () => {
     const [cards, setCards] = useState<Tcard[]>([]);
     const [spiner, setspiner] = useState<boolean>(false)
-    const nav = useNavigate();
+    const navigate = useNavigate();
 
     const { user } = useAuth();
 
@@ -34,7 +34,7 @@ const MyCards = () => {
         fetchCards();
     }, [user?._id]);
 
-
+    const navigateToEditCardPage = () => { navigate("/edit-card") }
 
 
     return (
@@ -53,10 +53,10 @@ const MyCards = () => {
                         <p> Adress: {card.address.state}  {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}</p>
                         <p> BizNumber: {card.bizNumber}</p>
                     </div>
-                    <Button onClick={() => nav("/card/" + card._id)}>view and edit</Button>
+                    <Button onClick={() => navigate("/card/" + card._id)}>View Card</Button>
                     <div>
-                        <MdEdit></MdEdit>
-                        <MdDelete></MdDelete>
+                        <MdEdit className="cursor-pointer" onClick={navigateToEditCardPage}></MdEdit>
+                        <MdDelete className="cursor-pointer"></MdDelete>
                     </div>
                 </Card>
             ))}

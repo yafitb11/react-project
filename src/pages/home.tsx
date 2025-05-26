@@ -107,7 +107,7 @@ const Home = () => {
                             {user && (
                                 <FaHeart className={`${isLiked ? "text-red-500" : "text-gray-500"} cursor-pointer`} onClick={() => likeOrUnlikeCard(card._id)}></FaHeart>
                             )}
-                            <Button onClick={() => nav("/card/" + card._id)}>Click</Button>
+                            <Button onClick={() => nav("/card/" + card._id)}>View Card</Button>
                         </Card>
                     );
                 })}
