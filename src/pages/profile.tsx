@@ -17,10 +17,8 @@ const Profile = () => {
                 <p>Name: {user.name.first} {user.name.middle} {user.name.last}</p>
                 <p> Phone: {user.phone} </p>
                 <p> Email: {user.email} </p>
-                <p> Password:{user.password}  </p>
                 <p> Adress: {user.address.state} {user.address.country} {user.address.city} {user.address.street} {user.address.houseNumber}</p>
                 <p> isBusiness: {user.isBusiness ? "yes" : "no"}</p>
-
             </Card>}
 
             <Button onClick={moveToEditProfilePage}>Edit your details</Button>

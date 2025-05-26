@@ -7,9 +7,13 @@ import { FormData } from "../types/formData";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { userActions } from "../store/userSlice";
 
 export default function EditProfile() {
     const { user } = useAuth();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors, isValid },
     } = useForm<FormData>({
@@ -20,8 +24,6 @@ export default function EditProfile() {
                 last: user?.name.last,
             },
             phone: user?.phone,
-            email: user?.email,
-            password: user?.password,
             image: {
                 url: user?.image.url,
                 alt: user?.image.alt,
@@ -41,28 +43,27 @@ export default function EditProfile() {
     });
 
     const submitForm = async (data: FormData) => {
-        console.log(data);
+        const token = localStorage.getItem("token");
+        if (token) {
+            const parsedToken = jwtDecode(token) as { _id: string; };
 
-
-        try {
-            const token = localStorage.getItem("token");
-            console.log(token)
             axios.defaults.headers.common["x-auth-token"] = token;
-            const response = await axios.put(
-                "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/6559f2dbdedf2db2b52bde42", data);
-            console.log(response.status);
+            try {
+                const response = await axios.put(
+                    "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/" + parsedToken._id, data);
 
-            if (response.status === 201) {
-                toast.success("editing was successful", { autoClose: 2000, });
-                navigate('/profile');
+                if (response.status === 200) {
+                    dispatch(userActions.login(response.data));
+                    toast.success("editing was successful", { autoClose: 2000, });
+                    navigate('/profile');
+                }
+
+            } catch (error) {
+                console.log("Error registering:", error);
+                toast.error("something went wrong", { autoClose: 2000, });
             }
-
-        } catch (error) {
-            console.log("Error registering:", error);
-            toast.error("something went wrong", { autoClose: 2000, });
         }
-
-    };
+    }
 
 
     return (
@@ -70,7 +71,7 @@ export default function EditProfile() {
 
             <form onSubmit={handleSubmit(submitForm)} className="myform w-[50%] ">
 
-                <h1 className="text-2xl font-bold text-gray-800">Register</h1>
+                <h1 className="text-2xl font-bold text-gray-800">Edit your details</h1>
 
                 <fieldset className="flex gap-3 justify-center" >
                     <legend className="mb-1" style={{ color: "#057A55" }}>Name</legend>
@@ -99,18 +100,6 @@ export default function EditProfile() {
                 />
                 {errors.phone && (
                     <p className="text-sm text-red-500">{errors.phone.message}</p>
-                )}
-
-                <FloatingLabel  {...register("email")} variant="outlined" label="Email"
-                    type="email" color={errors.email ? "error" : "success"} />
-                {errors.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
-                )}
-
-                <FloatingLabel {...register("password")} variant="outlined" label="Password"
-                    type="password" color={errors.password ? "error" : "success"} />
-                {errors.password && (
-                    <p className="text-sm text-red-500">{errors.password.message}</p>
                 )}
 
 
