@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { newCardSchema } from "../validations/newCard.joi";
 import axios from "axios";
 import { Tcard } from "../types/cardType";
+import { toast } from "react-toastify";
 
 export default function CreateCard() {
   const { register, handleSubmit, formState: { errors, isValid } } = useForm<Tcard>({
@@ -32,15 +33,20 @@ export default function CreateCard() {
   });
 
   const submitForm = async (data: Tcard) => {
-    console.log("Card submitted", data);
+
     try {
       const token = localStorage.getItem("token");
       axios.defaults.headers.common["x-auth-token"] = token;
       const response = await axios.post(
         "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards", data);
-      console.log("card created successfuly:", response.data);
+
+      if (response.status === 200) {
+        toast.success("editing was successful", { autoClose: 2000, });
+      }
+
     } catch (error) {
       console.log("Error registering:", error);
+      toast.error("something went wrong", { autoClose: 2000, });
     }
   };
 

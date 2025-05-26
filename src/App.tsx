@@ -14,6 +14,7 @@ import CardDetails from "./pages/CardDetails";
 import ManageUsers from "./pages/ManageUsers";
 import MyCards from "./pages/MyCards";
 import EditProfile from "./pages/EditProfile";
+import EditCard from "./pages/EditCard";
 
 function App() {
   return (
@@ -56,7 +57,7 @@ function App() {
 
         <Route path="/edit-profile" element={<EditProfile />}></Route>
 
-
+        <Route path="/edit-card/:id" element={<EditCard />}></Route>
 
 
       </Routes>
