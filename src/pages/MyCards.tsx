@@ -8,6 +8,7 @@ import { MdEdit, MdDelete } from "react-icons/md";
 
 const MyCards = () => {
     const [cards, setCards] = useState<Tcard[]>([]);
+    const [reload, setReload] = useState<boolean>(false);
     const [spiner, setspiner] = useState<boolean>(false)
     const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ const MyCards = () => {
         };
 
         fetchCards();
-    }, [user?._id]);
+    }, [user?._id, reload]);
 
     const deleteCard = async (id: string) => {
         try {
@@ -45,6 +46,7 @@ const MyCards = () => {
         } catch (error) {
             console.error("Error deleting card:", error);
         }
+        setReload((reload => !reload));
     };
 
     return (
