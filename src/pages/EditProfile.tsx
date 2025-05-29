@@ -15,8 +15,7 @@ export default function EditProfile() {
     const { user } = useAuth();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors, isValid },
-    } = useForm<FormData>({
+    const { register, handleSubmit, formState: { errors, isValid }, } = useForm<FormData>({
         defaultValues: {
             name: {
                 first: user?.name.first,

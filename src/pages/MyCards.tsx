@@ -34,9 +34,6 @@ const MyCards = () => {
         fetchCards();
     }, [user?._id]);
 
-    const navigateToEditCardPage = () => { navigate("/edit-card") }
-
-
     return (
         <div className="flex flex-col items-center justify-start gap-2">
             <h1 className="text-2xl">Favorites Page</h1>
@@ -55,7 +52,7 @@ const MyCards = () => {
                     </div>
                     <Button onClick={() => navigate("/card/" + card._id)}>View Card</Button>
                     <div>
-                        <MdEdit className="cursor-pointer" onClick={navigateToEditCardPage}></MdEdit>
+                        <MdEdit className="cursor-pointer" onClick={() => navigate("/edit-card/" + card._id)}></MdEdit>
                         <MdDelete className="cursor-pointer"></MdDelete>
                     </div>
                 </Card>

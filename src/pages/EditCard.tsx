@@ -10,8 +10,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function EditCard() {
-    const { id } = useParams<{ id: string }>();
     const [card, setCard] = useState<Tcard>();
+    const { id } = useParams<{ id: string }>();
 
     useEffect(() => {
         const fetchCardDetails = async () => {
@@ -19,6 +19,7 @@ export default function EditCard() {
                 const response = await axios.get(
                     `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`,
                 );
+                console.log(response.data);
 
                 setCard(response.data);
             } catch (error) {
@@ -30,30 +31,35 @@ export default function EditCard() {
     }, [id]);
 
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<Tcard>({
-        defaultValues: {
-            title: card?.title,
-            subtitle: card?.subtitle,
-            description: card?.description,
-            phone: card?.phone,
-            email: card?.email,
-            web: card?.web,
-            image: {
-                url: card?.image.url,
-                alt: card?.image.alt,
-            },
-            address: {
-                state: card?.address.state,
-                country: card?.address.country,
-                city: card?.address.city,
-                street: card?.address.street,
-                houseNumber: card?.address.houseNumber,
-                zip: card?.address.zip,
-            },
-        },
-        mode: "onChange",
-        resolver: joiResolver(newCardSchema),
+    const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<Tcard>({
+        mode: "onChange", resolver: joiResolver(newCardSchema),
     });
+
+    useEffect(() => {
+        if (card) {
+            reset({
+                title: card.title,
+                subtitle: card.subtitle,
+                description: card.description,
+                phone: card.phone,
+                email: card.email,
+                web: card.web,
+                image: {
+                    url: card.image.url,
+                    alt: card.image.alt,
+                },
+                address: {
+                    state: card.address.state,
+                    country: card.address.country,
+                    city: card.address.city,
+                    street: card.address.street,
+                    houseNumber: card.address.houseNumber,
+                    zip: card.address.zip,
+                },
+            });
+        }
+    }, [card, reset]);
+
 
     const submitForm = async (data: Tcard) => {
         try {
@@ -61,11 +67,11 @@ export default function EditCard() {
             axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.put(
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${card?._id}`, data);
-            console.log("card created successfuly:", response.data);
+            console.log("card edited successfuly:", response.data);
 
             if (response.status === 200) {
                 toast.success("editing was successful", { autoClose: 2000, });
-                navigate('/mycards');
+                navigate('/my-cards');
             }
 
         } catch (error) {
@@ -78,6 +84,7 @@ export default function EditCard() {
         <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
 
             <form onSubmit={handleSubmit(submitForm)} className="myform flex flex-col gap-4 align-middle w-[50%] ">
+                <h1 className="text-2xl font-bold text-gray-800">Edit Card Details</h1>
 
                 <FloatingLabel
                     {...register("title")}
