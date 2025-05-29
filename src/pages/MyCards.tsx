@@ -48,29 +48,30 @@ const MyCards = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-start gap-2">
-            <h1 className="text-2xl">My Cards</h1>
+        <div className="flex flex-col items-center justify-start gap-2  bg-slate-400">
+            <h1 className="text-4xl">My Cards</h1>
 
-            {cards?.map((card) => (
-                <Card key={card._id} id={card._id} className="h-[500px] w-1/4 mycard" imgSrc={card.image.url}>
-                    <div>
-                        <h2>{card.title}</h2>
-                        <h5>{card.subtitle}</h5>
-                        <p>{card.description}</p>
-                        <p> Phone: {card.phone} </p>
-                        <p> Email: {card.email} </p>
-                        {card.web && <p> Web: {card.web} </p>}
-                        <p> Adress: {card.address.state}  {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}</p>
-                        <p> BizNumber: {card.bizNumber}</p>
-                    </div>
-                    <Button onClick={() => navigate("/card/" + card._id)}>View Card</Button>
-                    <div className="flex justify-center">
-                        <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-card/" + card._id)}></MdEdit>
-                        <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteCard(card._id) }}></MdDelete>
-                    </div>
-                </Card>
-            ))}
-
+            <div className="w-[100%] flex gap-5 flex-wrap p-5 justify-center bg-slate-600">
+                {cards?.map((card) => (
+                    <Card key={card._id} id={card._id} className="h-[500px] w-1/4 mycard" imgSrc={card.image.url}>
+                        <div>
+                            <h2>{card.title}</h2>
+                            <h5>{card.subtitle}</h5>
+                            <p>{card.description}</p>
+                            <p> Phone: {card.phone} </p>
+                            <p> Email: {card.email} </p>
+                            {card.web && <p> Web: {card.web} </p>}
+                            <p> Adress: {card.address.state}  {card.address.country} {card.address.city} {card.address.street} {card.address.houseNumber}</p>
+                            <p> BizNumber: {card.bizNumber}</p>
+                        </div>
+                        <Button onClick={() => navigate("/card/" + card._id)}>View Card</Button>
+                        <div className="flex justify-center">
+                            <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-card/" + card._id)}></MdEdit>
+                            <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteCard(card._id) }}></MdDelete>
+                        </div>
+                    </Card>
+                ))}
+            </div>
             {spiner && (
                 <Spinner color="purple" aria-label="Purple spinner example" />
             )}

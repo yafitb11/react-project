@@ -5,8 +5,10 @@ import { newCardSchema } from "../validations/newCard.joi";
 import axios from "axios";
 import { Tcard } from "../types/cardType";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateCard() {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors, isValid } } = useForm<Tcard>({
     defaultValues: {
       title: "",
@@ -40,12 +42,13 @@ export default function CreateCard() {
       const response = await axios.post(
         "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards", data);
 
-      if (response.status === 200) {
-        toast.success("editing was successful", { autoClose: 2000, });
+      if (response.status === 201) {
+        toast.success("creating card was successful", { autoClose: 2000, });
+        navigate('/my-cards');
       }
 
     } catch (error) {
-      console.log("Error registering:", error);
+      console.log("Error creating card:", error);
       toast.error("something went wrong", { autoClose: 2000, });
     }
   };
@@ -239,39 +242,3 @@ export default function CreateCard() {
     </main>
   );
 }
-
-/*
-   
-  <FloatingLabel
-{...register("description")}
-variant="outlined"
-        label="description"
-        type="text"
-        color={errors.description ? "error" : "success"}
-        
-      />
-      {errors.description && (
-        <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
-      )}
-        
-///////////////////
-
-
-        <textarea
-          {...register("description")}
-          rows={4}
-          className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "border-red-500" : "border-gray-300"
-            } appearance-none focus:outline-none focus:ring-0 focus:border-blue-600`}
-        />
-        <label
-          className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"
-        >
-          description
-        </label>
-        {errors.description && (
-          <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
-        )}
-
-
-
-      */
