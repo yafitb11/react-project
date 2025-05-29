@@ -34,9 +34,22 @@ const MyCards = () => {
         fetchCards();
     }, [user?._id]);
 
+    const deleteCard = async (id: string) => {
+        try {
+            const token = localStorage.getItem("token");
+            axios.defaults.headers.common["x-auth-token"] = token;
+            const response = await axios.delete(
+                `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`);
+            console.log(response.data);
+
+        } catch (error) {
+            console.error("Error deleting card:", error);
+        }
+    };
+
     return (
         <div className="flex flex-col items-center justify-start gap-2">
-            <h1 className="text-2xl">Favorites Page</h1>
+            <h1 className="text-2xl">My Cards</h1>
 
             {cards?.map((card) => (
                 <Card key={card._id} id={card._id} className="h-[500px] w-1/4 mycard" imgSrc={card.image.url}>
@@ -51,9 +64,9 @@ const MyCards = () => {
                         <p> BizNumber: {card.bizNumber}</p>
                     </div>
                     <Button onClick={() => navigate("/card/" + card._id)}>View Card</Button>
-                    <div>
-                        <MdEdit className="cursor-pointer" onClick={() => navigate("/edit-card/" + card._id)}></MdEdit>
-                        <MdDelete className="cursor-pointer"></MdDelete>
+                    <div className="flex justify-center">
+                        <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-card/" + card._id)}></MdEdit>
+                        <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteCard(card._id) }}></MdDelete>
                     </div>
                 </Card>
             ))}
