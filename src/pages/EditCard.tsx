@@ -9,28 +9,26 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const [card, setCard] = useState<Tcard>();
-const { id } = useParams<{ id: string }>();
-
-useEffect(() => {
-    const fetchCardDetails = async () => {
-        try {
-            const response = await axios.get(
-                `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`,
-            );
-
-            setCard(response.data);
-        } catch (error) {
-            console.error("Error fetching card details:", error);
-        }
-    };
-
-    fetchCardDetails();
-}, [id]);
-
-
-
 export default function EditCard() {
+    const { id } = useParams<{ id: string }>();
+    const [card, setCard] = useState<Tcard>();
+
+    useEffect(() => {
+        const fetchCardDetails = async () => {
+            try {
+                const response = await axios.get(
+                    `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`,
+                );
+
+                setCard(response.data);
+            } catch (error) {
+                console.error("Error fetching card details:", error);
+            }
+        };
+
+        fetchCardDetails();
+    }, [id]);
+
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors, isValid } } = useForm<Tcard>({
         defaultValues: {
