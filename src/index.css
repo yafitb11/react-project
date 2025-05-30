@@ -48,6 +48,10 @@ background-color: lightgray;
   height:336px;
 }
 
+#iconsdiv{height: 30px!important;
+overflow:hidden!important;
+gap:10px!important; 
+}
 
   .myform{
     display: flex;

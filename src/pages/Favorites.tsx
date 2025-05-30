@@ -82,7 +82,7 @@ const Favorites = () => {
 
             <div className="w-[100%] flex gap-5 flex-wrap p-5 justify-center bg-slate-600">
                 {cards && filterCards()?.map((card) => (
-                    <Card key={card._id} id={card._id} className="h-[500px] w-1/4 mycard" imgSrc={card.image.url}>
+                    <Card key={card._id} id={card._id} className="mycard" imgSrc={card.image.url}>
                         <div>
                             <h2>{card.title}</h2>
                             <h5>{card.subtitle}</h5>
@@ -94,10 +94,11 @@ const Favorites = () => {
                             <p> BizNumber: {card.bizNumber}</p>
                         </div>
                         {user && (
-                            <FaHeart className={"text-red-500 cursor-pointer"}
+                            <FaHeart className={"text-red-500 cursor-pointer text-2xl ml-2 mb-1"}
                                 onClick={() => unlikeCard(card._id)}></FaHeart>
                         )}
-                        <Button onClick={() => nav("/card/" + card._id)}>Click</Button>
+                        <Button className="ml-2 mr-2 cursor-pointer"
+                            onClick={() => nav("/card/" + card._id)}>View Card</Button>
                     </Card>
                 ))}
             </div>
