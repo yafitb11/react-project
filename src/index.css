@@ -6,9 +6,11 @@
 
 .mycard {
     width: 21%;
+    height: 500px;
     padding: 0px;
     border-radius: 10px;
-   overflow-y: auto;
+    background-color: lightgray;
+   overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease-in-out; 
   }
@@ -24,15 +26,15 @@
   }
   
 .mycard p{
-  @apply font-normal text-gray-700 dark:text-gray-400 m-[4px];
+  @apply font-normal text-gray-700 dark:text-gray-400 m-[4px] text-[15px];
 }
 
 .mycard h5{
-  @apply  text-gray-700 dark:text-gray-400 m-[4px] text-lg font-semibold;
+  @apply  text-gray-700 dark:text-gray-400 m-[4px] text-[17px] font-semibold;
 }
 
 .mycard h2{
-  @apply text-gray-700 dark:text-gray-400 m-[6px] text-xl font-bold;
+  @apply text-gray-700 dark:text-gray-400 ml-[4px] mt-[6px] text-xl font-bold;
 }
 
 .mycard div{
@@ -42,6 +44,8 @@
  padding-bottom: 2px !important;
  padding-top: 2px !important;
 background-color: lightgray;
+  overflow-y: auto;
+  height:336px;
 }
 
 

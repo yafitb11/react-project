@@ -98,11 +98,11 @@ const Home = () => {
             <h1 className="text-2xl">Home Page</h1>
             <p className="text-lg">Welcome Home!</p>
 
-            <div className="w-[100%] flex gap-3 flex-wrap p-3 justify-center bg-slate-600">
+            <div className="w-[100%] flex gap-6 flex-wrap p-5 justify-center bg-slate-600">
                 {cards && filterByPage()?.map((card) => {
                     const isLiked = card.likes.includes(user?._id + "");
                     return (
-                        <Card key={card._id} id={card._id} className="h-[500px] w-1/4 mycard" imgSrc={card.image.url}>
+                        <Card key={card._id} id={card._id} className="mycard" imgSrc={card.image.url}>
                             <div>
                                 <h2>{card.title}</h2>
                                 <h5>{card.subtitle}</h5>
@@ -114,9 +114,9 @@ const Home = () => {
                                 <p> BizNumber: {card.bizNumber}</p>
                             </div>
                             {user && (
-                                <FaHeart className={`${isLiked ? "text-red-500" : "text-gray-500"} cursor-pointer`} onClick={() => likeOrUnlikeCard(card._id)}></FaHeart>
+                                <FaHeart className={`${isLiked ? "text-red-500" : "text-gray-500"} cursor-pointer text-2xl ml-2 mb-1`} onClick={() => likeOrUnlikeCard(card._id)}></FaHeart>
                             )}
-                            <Button onClick={() => nav("/card/" + card._id)}>View Card</Button>
+                            <Button className="ml-2 mr-2" onClick={() => nav("/card/" + card._id)}>View Card</Button>
                         </Card>
                     );
                 })}
