@@ -15,6 +15,7 @@ import ManageUsers from "./pages/ManageUsers";
 import MyCards from "./pages/MyCards";
 import EditProfile from "./pages/EditProfile";
 import EditCard from "./pages/EditCard";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
         <Route path="/*" element={<ErrorPage />} />
 
         <Route path="/home" element={<Home />}></Route>
+
+        <Route path="/about" element={<About />}></Route>
 
         <Route path="/signin" element={<SignIn />}></Route>
 
