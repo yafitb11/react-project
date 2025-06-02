@@ -7,13 +7,15 @@ import { useSelector } from "react-redux";
 import { TRootState } from "../store/store";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Pagination } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
 const ManageUsers = () => {
-
+    const navigate = useNavigate();
     const [users, setUsers] = useState<Tuser[]>([]);
     const [spiner, setspiner] = useState<boolean>(false);
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord);
     const [curPage, setCurPage] = useState<number>(1);
+    const [reload, setReload] = useState<boolean>(false);
 
     useEffect(() => {
         const getUsers = async () => {
@@ -33,7 +35,7 @@ const ManageUsers = () => {
             } finally { setspiner(false) }
         };
         getUsers();
-    }, []);
+    }, [reload]);
 
 
     const filterUsers = () => {
@@ -59,6 +61,19 @@ const ManageUsers = () => {
         return filterUsers().slice(start, end);
     }
 
+    const deleteUser = async (id: string) => {
+        try {
+            const token = localStorage.getItem("token");
+            axios.defaults.headers.common["x-auth-token"] = token;
+            const response = await axios.delete(
+                `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`);
+            console.log(response.data);
+
+        } catch (error) {
+            console.error("Error deleting card:", error);
+        }
+        setReload((reload => !reload));
+    };
 
     return (
         <div className="flex flex-col items-center justify-start gap-2">
@@ -79,8 +94,8 @@ const ManageUsers = () => {
                                 <p> isAdmin: {user.isAdmin ? "yes" : "no"}</p>
                             </div>
                             <div className="flex justify-center" id="iconsdiv">
-                                <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-card/" + card._id)}></MdEdit>
-                                <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteCard(card._id) }}></MdDelete>
+                                <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-user/" + user._id)}></MdEdit>
+                                <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteUser(user._id) }}></MdDelete>
                             </div>
                         </Card>
                     );

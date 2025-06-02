@@ -16,6 +16,7 @@ import MyCards from "./pages/MyCards";
 import EditProfile from "./pages/EditProfile";
 import EditCard from "./pages/EditCard";
 import About from "./pages/About";
+import EditUser from "./pages/EditUser";
 
 function App() {
   return (
@@ -58,9 +59,17 @@ function App() {
           <ManageUsers />
         </RouteGuard>}></Route>
 
-        <Route path="/edit-profile" element={<EditProfile />}></Route>
+        <Route path="/edit-profile" element={<RouteGuard>
+          <EditProfile />
+        </RouteGuard>}></Route>
 
-        <Route path="/edit-card/:id" element={<EditCard />}></Route>
+        <Route path="/edit-card/:id" element={<RouteGuard isBiz={true}>
+          <EditCard />
+        </RouteGuard>}></Route>
+
+        <Route path="/edit-user/:id" element={<RouteGuard isAdmin={true}>
+          <EditUser />
+        </RouteGuard>}></Route>
 
 
       </Routes>
