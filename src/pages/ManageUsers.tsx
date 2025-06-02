@@ -1,17 +1,19 @@
 import axios from "axios";
-import { Button, Card, Spinner } from "flowbite-react";
+import { Card, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Tuser } from "../types/userType";
 import { useSelector } from "react-redux";
 import { TRootState } from "../store/store";
-
+import { MdDelete, MdEdit } from "react-icons/md";
+import { Pagination } from "flowbite-react";
 
 const ManageUsers = () => {
 
     const [users, setUsers] = useState<Tuser[]>([]);
     const [spiner, setspiner] = useState<boolean>(false);
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord);
+    const [curPage, setCurPage] = useState<number>(1);
 
     useEffect(() => {
         const getUsers = async () => {
@@ -47,6 +49,15 @@ const ManageUsers = () => {
         return users;
     }
 
+    const onPageChange = (page: number) => {
+        setCurPage(page);
+    }
+
+    const filterByPage = () => {
+        const start = (curPage - 1) * 12;
+        const end = start + 12;
+        return filterUsers().slice(start, end);
+    }
 
 
     return (
@@ -55,18 +66,22 @@ const ManageUsers = () => {
 
 
             <div className="w-[100%] flex gap-3 flex-wrap p-3 justify-center bg-slate-600">
-                {users && filterUsers()?.map((user) => {
+                {users && filterByPage()?.map((user) => {
                     return (
-                        <Card key={user._id} id={user._id} className="h-[500px] w-1/4 mycard" imgSrc={user.image.url}>
-                            <h2>{user._id}</h2>
-                            <h2>{user.name.first} {user.name.middle} {user.name.last}</h2>
-                            <p> Phone: {user.phone} </p>
-                            <p> Email: {user.email} </p>
-                            <p> Password:{user.password}  </p>
-                            <p> Adress: {user.address.state} {user.address.country} {user.address.city} {user.address.street} {user.address.houseNumber}</p>
-                            <p> isBusiness: {user.isBusiness ? "yes" : "no"}</p>
-                            <p> isAdmin: {user.isAdmin ? "yes" : "no"}</p>
-
+                        <Card key={user._id} id={user._id} className="usersCard" imgSrc={user.image.url}>
+                            <div>
+                                <h2>{user.name.first} {user.name.middle} {user.name.last}</h2>
+                                <p>ID: {user._id}</p>
+                                <p> Phone: {user.phone} </p>
+                                <p> Email: {user.email} </p>
+                                <p> Adress: {user.address.state} {user.address.country} {user.address.city} {user.address.street} {user.address.houseNumber}</p>
+                                <p> isBusiness: {user.isBusiness ? "yes" : "no"}</p>
+                                <p> isAdmin: {user.isAdmin ? "yes" : "no"}</p>
+                            </div>
+                            <div className="flex justify-center" id="iconsdiv">
+                                <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-card/" + card._id)}></MdEdit>
+                                <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteCard(card._id) }}></MdDelete>
+                            </div>
                         </Card>
                     );
                 })}
@@ -75,6 +90,9 @@ const ManageUsers = () => {
             {spiner && (
                 <Spinner color="purple" aria-label="Purple spinner example" />
             )}
+            <div className="flex overflow-x-auto sm:justify-center mb-3">
+                <Pagination currentPage={curPage} totalPages={Math.ceil(filterUsers().length / 12)} onPageChange={onPageChange} />
+            </div>
 
         </div>
     );

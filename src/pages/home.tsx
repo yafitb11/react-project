@@ -128,7 +128,7 @@ const Home = () => {
             )}
 
             <div className="flex overflow-x-auto sm:justify-center mb-3">
-                <Pagination currentPage={curPage} totalPages={Math.ceil(cards.length / 12)} onPageChange={onPageChange} />
+                <Pagination currentPage={curPage} totalPages={Math.ceil(filterCards().length / 12)} onPageChange={onPageChange} />
             </div>
 
         </div>

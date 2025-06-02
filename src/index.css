@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 
-
 .mycard {
-    width: 21%;
+    width: 270px;
     height: 500px;
     padding: 0px;
     border-radius: 10px;
@@ -15,17 +14,29 @@
     transition: transform 0.3s ease-in-out; 
   }
   
-  .mycard:hover {
+.usersCard{
+    width: 270px;
+    height: 450px;
+    padding: 0px;
+    border-radius: 10px;
+    background-color: lightgray;
+   overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease-in-out; 
+    padding-bottom:10px;
+  }
+
+  .mycard:hover, .usersCard:hover {
     transform: translateY(-5px); 
   }
   
-  .mycard img {
+  .mycard img, .usersCard img {
     width: 100%;
     height: 150px;
     object-fit: cover; 
   }
   
-.mycard p{
+.mycard p, .usersCard p{
   @apply font-normal text-gray-700 dark:text-gray-400 m-[4px] text-[15px];
 }
 
@@ -33,7 +44,7 @@
   @apply  text-gray-700 dark:text-gray-400 m-[4px] text-[17px] font-semibold;
 }
 
-.mycard h2{
+.mycard h2, .usersCard h2{
   @apply text-gray-700 dark:text-gray-400 ml-[4px] mt-[6px] text-xl font-bold;
 }
 
@@ -48,10 +59,22 @@ background-color: lightgray;
   height:336px;
 }
 
+.usersCard div{
+ gap: 5px!important;
+ padding-right: 7px !important;
+ padding-left: 7px !important;
+ padding-bottom: 2px !important;
+ padding-top: 2px !important;
+background-color: lightgray;
+  overflow-y: auto;
+  height:336px;
+}
+
 #iconsdiv{height: 30px!important;
 overflow:hidden!important;
 gap:10px!important; 
 }
+
 
   .myform{
     display: flex;
