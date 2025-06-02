@@ -80,6 +80,7 @@ const Home = () => {
 
         } catch (error) {
             console.log("Error liking/unliking card:", error);
+            toast.error("something went wrong");
         }
     };
 

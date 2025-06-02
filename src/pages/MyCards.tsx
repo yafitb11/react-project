@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Tcard } from "../types/cardType";
 import useAuth from "../hooks/useAuth";
 import { MdEdit, MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const MyCards = () => {
     const [cards, setCards] = useState<Tcard[]>([]);
@@ -42,9 +43,10 @@ const MyCards = () => {
             const response = await axios.delete(
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`);
             console.log(response.data);
-
+            toast.success("editing was successful", { autoClose: 2000, });
         } catch (error) {
             console.error("Error deleting card:", error);
+            toast.error("something went wrong", { autoClose: 2000, });
         }
         setReload((reload => !reload));
     };

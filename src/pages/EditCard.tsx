@@ -76,6 +76,7 @@ export default function EditCard() {
 
         } catch (error) {
             console.log("Error registering:", error);
+            toast.error("something went wrong", { autoClose: 2000, });
         }
     };
 

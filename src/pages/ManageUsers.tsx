@@ -66,11 +66,12 @@ const ManageUsers = () => {
             const token = localStorage.getItem("token");
             axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.delete(
-                `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`);
+                `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${id}`);
             console.log(response.data);
-
+            toast.success("User deleted successfully");
         } catch (error) {
-            console.error("Error deleting card:", error);
+            console.error("Error deleting user:", error);
+            toast.error("something went wrong");
         }
         setReload((reload => !reload));
     };
