@@ -19,12 +19,9 @@ const ManageUsers = () => {
 
     useEffect(() => {
         const getUsers = async () => {
-            console.log("helloe");
-
             try {
                 setspiner(true)
                 const token = localStorage.getItem("token");
-
                 axios.defaults.headers.common["x-auth-token"] = token;
                 const response = await axios.get("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users",);
                 setUsers(response.data);

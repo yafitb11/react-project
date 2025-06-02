@@ -1,7 +1,7 @@
 import { joiResolver } from "@hookform/resolvers/joi";
 import { Button, FloatingLabel } from "flowbite-react";
 import { useForm } from "react-hook-form";
-import { newCardSchema } from "../validations/newCard.joi";
+import { editUserSchema } from "../validations/editUser.joi";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +32,7 @@ export default function EditUser() {
 
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<Tuser>({
-        mode: "onChange", resolver: joiResolver(newCardSchema),
+        mode: "onChange", resolver: joiResolver(editUserSchema),
     });
 
     useEffect(() => {
@@ -62,7 +62,20 @@ export default function EditUser() {
         }
     }, [user, reset]);
 
+    ///
+    useEffect(() => {
+        return () => console.log("EditUser unmounting");
+    }, []);
 
+
+    useEffect(() => {
+        console.log("Fetching user for id:", id);
+        // fetch...
+    }, [id]);
+
+
+
+    ///
     const submitForm = async (data: Tuser) => {
         try {
             const token = localStorage.getItem("token");
@@ -81,7 +94,8 @@ export default function EditUser() {
             toast.error("something went wrong", { autoClose: 2000, });
         }
     };
-
+    console.log("isValid:", isValid);
+    console.log("errors:", errors);
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
