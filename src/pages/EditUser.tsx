@@ -9,8 +9,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Tuser } from "../types/userType";
 
+
 export default function EditUser() {
-    const [user, setUser] = useState<Tuser>();
+    const [user1, setUser1] = useState<Tuser>();
     const { id } = useParams<{ id: string }>();
 
     useEffect(() => {
@@ -19,9 +20,9 @@ export default function EditUser() {
                 const response = await axios.get(
                     `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${id}`,
                 );
-                console.log(response.data);
+                console.log("first user", response.data);
 
-                setUser(response.data);
+                setUser1(response.data);
             } catch (error) {
                 console.error("Error fetching user details:", error);
             }
@@ -31,57 +32,42 @@ export default function EditUser() {
     }, [id]);
 
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<Tuser>({
+    const { register, handleSubmit, formState: { errors, isValid }, reset, getValues, } = useForm<Tuser>({
         mode: "onChange", resolver: joiResolver(editUserSchema),
     });
 
+
     useEffect(() => {
-        if (user) {
+        if (user1) {
             reset({
                 name: {
-                    first: user.name.first,
-                    middle: user.name.middle,
-                    last: user.name.last,
+                    first: user1.name.first,
+                    middle: user1.name.middle,
+                    last: user1.name.last,
                 },
-                phone: user.phone,
-                email: user.email,
-
+                phone: user1.phone,
                 image: {
-                    url: user.image.url,
-                    alt: user.image.alt,
+                    url: user1.image.url,
+                    alt: user1.image.alt,
                 },
                 address: {
-                    state: user.address.state,
-                    country: user.address.country,
-                    city: user.address.city,
-                    street: user.address.street,
-                    houseNumber: user.address.houseNumber,
-                    zip: user.address.zip,
+                    state: user1.address.state !== "not defined" ? user1.address.state : "",
+                    country: user1.address.country,
+                    city: user1.address.city,
+                    street: user1.address.street,
+                    houseNumber: user1.address.houseNumber,
+                    zip: user1.address.zip,
                 },
             });
         }
-    }, [user, reset]);
+    }, [user1, reset]);
 
-    ///
-    useEffect(() => {
-        return () => console.log("EditUser unmounting");
-    }, []);
-
-
-    useEffect(() => {
-        console.log("Fetching user for id:", id);
-        // fetch...
-    }, [id]);
-
-
-
-    ///
     const submitForm = async (data: Tuser) => {
         try {
             const token = localStorage.getItem("token");
             axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.put(
-                `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${user?._id}`, data);
+                `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${user1?._id}`, data);
             console.log("user edited successfuly:", response.data);
 
             if (response.status === 200) {
@@ -96,6 +82,8 @@ export default function EditUser() {
     };
     console.log("isValid:", isValid);
     console.log("errors:", errors);
+    const values = getValues();
+    console.log("values", values);
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
@@ -125,8 +113,7 @@ export default function EditUser() {
                 </fieldset>
 
 
-                <FloatingLabel  {...register("phone")} variant="outlined" label="Phone"
-                    type="number" color={errors.phone ? "error" : "success"}
+                <FloatingLabel  {...register("phone")} variant="outlined" label="Phone" type="number" color={errors.phone ? "error" : "success"}
                 />
                 {errors.phone && (
                     <p className="text-sm text-red-500">{errors.phone.message}</p>
@@ -207,3 +194,4 @@ export default function EditUser() {
         </main>
     );
 }
+
