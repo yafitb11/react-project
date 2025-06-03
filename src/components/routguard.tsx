@@ -16,9 +16,9 @@ const RouteGuard = (props: RouteGuardProps) => {
 
     if (!user) {
         return (
-            <div>
+            <div className="flex flex-col items-center p-3 gap-2  bg-slate-400">
                 <h1>you are not logged in, please log-in.</h1>
-                <Link to="/login">log in</Link>
+                <Link to="/login" className="cursor-pointer font-bold">log in</Link>
             </div>)
     }
 
