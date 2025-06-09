@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 export default function EditCard() {
     const [card, setCard] = useState<Tcard>();
     const { id } = useParams<{ id: string }>();
-
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchCardDetails = async () => {
             try {
@@ -26,11 +26,9 @@ export default function EditCard() {
                 console.error("Error fetching card details:", error);
             }
         };
-
         fetchCardDetails();
     }, [id]);
 
-    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<Tcard>({
         mode: "onChange", resolver: joiResolver(newCardSchema),
     });
@@ -99,7 +97,6 @@ export default function EditCard() {
                     <p className="text-sm text-red-500">{errors.title.message}</p>
                 )}
 
-
                 <FloatingLabel
                     {...register("subtitle")}
                     variant="outlined"
@@ -157,7 +154,6 @@ export default function EditCard() {
                     <p className="text-sm text-red-500">{errors.web.message}</p>
                 )}
 
-
                 <fieldset className="flex gap-3 justify-center">
                     <legend className="mb-1" style={{ color: "#057A55" }}>image</legend>
 
@@ -185,7 +181,6 @@ export default function EditCard() {
 
                 </fieldset>
 
-
                 <fieldset className="flex gap-3 flex-wrap justify-center">
                     <legend className="mb-1" style={{ color: "#057A55" }}>address</legend>
 
@@ -200,7 +195,6 @@ export default function EditCard() {
                         <p className="text-sm text-red-500">{errors.address.state.message}</p>
                     )}
 
-
                     <FloatingLabel
                         {...register("address.country")}
                         variant="outlined"
@@ -211,7 +205,6 @@ export default function EditCard() {
                     {errors.address?.country && (
                         <p className="text-sm text-red-500">{errors.address.country.message}</p>
                     )}
-
 
                     <FloatingLabel
                         {...register("address.city")}
@@ -224,7 +217,6 @@ export default function EditCard() {
                         <p className="text-sm text-red-500">{errors.address.city.message}</p>
                     )}
 
-
                     <FloatingLabel
                         {...register("address.street")}
                         variant="outlined"
@@ -236,7 +228,6 @@ export default function EditCard() {
                         <p className="text-sm text-red-500">{errors.address.street.message}</p>
                     )}
 
-
                     <FloatingLabel
                         {...register("address.houseNumber")}
                         variant="outlined"
@@ -247,7 +238,6 @@ export default function EditCard() {
                     {errors.address?.houseNumber && (
                         <p className="text-sm text-red-500">{errors.address.houseNumber.message}</p>
                     )}
-
 
                     <FloatingLabel
                         {...register("address.zip")}
@@ -261,7 +251,6 @@ export default function EditCard() {
                     )}
 
                 </fieldset>
-
 
                 <Button type="submit" className="w-full" disabled={!isValid}>
                     Submit

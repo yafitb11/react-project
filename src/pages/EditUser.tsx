@@ -32,7 +32,7 @@ export default function EditUser() {
     }, [id]);
 
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors, isValid }, reset, getValues, } = useForm<Tuser>({
+    const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<Tuser>({
         mode: "onChange", resolver: joiResolver(editUserSchema),
     });
 
@@ -80,10 +80,7 @@ export default function EditUser() {
             toast.error("something went wrong", { autoClose: 2000, });
         }
     };
-    console.log("isValid:", isValid);
-    console.log("errors:", errors);
-    const values = getValues();
-    console.log("values", values);
+
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
@@ -137,7 +134,6 @@ export default function EditUser() {
                     )}
 
                 </fieldset>
-
 
 
                 <fieldset className="flex gap-3 flex-wrap justify-center">
