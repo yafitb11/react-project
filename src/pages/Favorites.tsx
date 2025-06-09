@@ -16,8 +16,9 @@ const Favorites = () => {
     const nav = useNavigate();
 
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord)
+    const { user, autoLogIn } = useAuth();
 
-    const { user } = useAuth();
+    { !user && autoLogIn(); }
 
     useEffect(() => {
         const fetchCards = async () => {

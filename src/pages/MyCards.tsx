@@ -13,7 +13,8 @@ const MyCards = () => {
     const [spiner, setspiner] = useState<boolean>(false)
     const navigate = useNavigate();
 
-    const { user } = useAuth();
+    const { user, autoLogIn } = useAuth();
+    { !user && autoLogIn(); }
 
     useEffect(() => {
         const fetchCards = async () => {
