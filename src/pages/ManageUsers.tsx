@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Card, Spinner } from "flowbite-react";
+import { Card, Spinner, Button } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Tuser } from "../types/userType";
@@ -76,6 +76,8 @@ const ManageUsers = () => {
         setReload((reload => !reload));
     };
 
+    const changeBussinessStatus = async (id: string) => { }
+
     return (
         <div className="flex flex-col items-center justify-start gap-2  bg-slate-400">
             <h1 className="text-2xl">Users Page</h1>
@@ -97,6 +99,7 @@ const ManageUsers = () => {
                             <div className="flex justify-center" id="iconsdiv">
                                 <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-user/" + user._id)}></MdEdit>
                                 <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteUser(user._id) }}></MdDelete>
+                                <button className="font-bold" onClick={() => { changeBussinessStatus(user._id) }}>isBis</button>
                             </div>
                         </Card>
                     );
