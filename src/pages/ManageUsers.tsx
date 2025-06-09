@@ -8,6 +8,7 @@ import { TRootState } from "../store/store";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Pagination } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const ManageUsers = () => {
     const navigate = useNavigate();
@@ -16,6 +17,8 @@ const ManageUsers = () => {
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord);
     const [curPage, setCurPage] = useState<number>(1);
     const [reload, setReload] = useState<boolean>(false);
+    const { user, autoLogIn } = useAuth();
+    { !user && autoLogIn(); }
 
     useEffect(() => {
         const getUsers = async () => {

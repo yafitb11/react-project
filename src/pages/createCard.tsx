@@ -6,8 +6,11 @@ import axios from "axios";
 import { Tcard } from "../types/cardType";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function CreateCard() {
+  const { user, autoLogIn } = useAuth();
+  { !user && autoLogIn(); }
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors, isValid } } = useForm<Tcard>({
     defaultValues: {
@@ -35,7 +38,6 @@ export default function CreateCard() {
   });
 
   const submitForm = async (data: Tcard) => {
-
     try {
       const token = localStorage.getItem("token");
       axios.defaults.headers.common["x-auth-token"] = token;
@@ -53,7 +55,6 @@ export default function CreateCard() {
     }
   };
 
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
 
@@ -70,7 +71,6 @@ export default function CreateCard() {
         {errors.title && (
           <p className="text-sm text-red-500">{errors.title.message}</p>
         )}
-
 
         <FloatingLabel
           {...register("subtitle")}
@@ -157,7 +157,6 @@ export default function CreateCard() {
 
         </fieldset>
 
-
         <fieldset className="flex gap-3 flex-wrap justify-center">
           <legend className="mb-1" style={{ color: "#057A55" }}>address</legend>
 
@@ -172,7 +171,6 @@ export default function CreateCard() {
             <p className="text-sm text-red-500">{errors.address.state.message}</p>
           )}
 
-
           <FloatingLabel
             {...register("address.country")}
             variant="outlined"
@@ -183,7 +181,6 @@ export default function CreateCard() {
           {errors.address?.country && (
             <p className="text-sm text-red-500">{errors.address.country.message}</p>
           )}
-
 
           <FloatingLabel
             {...register("address.city")}
@@ -196,7 +193,6 @@ export default function CreateCard() {
             <p className="text-sm text-red-500">{errors.address.city.message}</p>
           )}
 
-
           <FloatingLabel
             {...register("address.street")}
             variant="outlined"
@@ -208,7 +204,6 @@ export default function CreateCard() {
             <p className="text-sm text-red-500">{errors.address.street.message}</p>
           )}
 
-
           <FloatingLabel
             {...register("address.houseNumber")}
             variant="outlined"
@@ -219,7 +214,6 @@ export default function CreateCard() {
           {errors.address?.houseNumber && (
             <p className="text-sm text-red-500">{errors.address.houseNumber.message}</p>
           )}
-
 
           <FloatingLabel
             {...register("address.zip")}
@@ -233,7 +227,6 @@ export default function CreateCard() {
           )}
 
         </fieldset>
-
 
         <Button type="submit" className="w-full" disabled={!isValid}>
           Submit

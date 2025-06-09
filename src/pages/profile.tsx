@@ -3,10 +3,10 @@ import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-    const { user } = useAuth();
+    const { user, autoLogIn } = useAuth();
     const navigate = useNavigate();
-
     const moveToEditProfilePage = () => { navigate('/edit-profile'); }
+    { !user && autoLogIn(); }
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-start gap-2">
