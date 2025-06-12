@@ -6,8 +6,8 @@ const Footer = () => {
     const linkToAbout = () => { navigate("/about"); }
 
     return (
-        <div className="mt-5 flex items-center justify-center dark:text-white dark:bg-black">
-            <IoInformationCircleSharp className="text-2xl"></IoInformationCircleSharp>
+        <div className="p-3 flex items-center justify-center bg-slate-800 text-white">
+            <IoInformationCircleSharp onClick={linkToAbout} className="text-2xl cursor-pointer"></IoInformationCircleSharp>
             <h3 onClick={linkToAbout} className="cursor-pointer">About</h3>
         </div>
     )

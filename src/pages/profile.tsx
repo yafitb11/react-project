@@ -12,7 +12,7 @@ const Profile = () => {
         <div className="flex min-h-screen flex-col items-center justify-start gap-2">
             <h1 className="text-2xl">Profile Page</h1>
             <p className="text-xl dark:text-white">Welcome {user?.name.first}</p>
-            {user && <Card className="h-[400px] w-1/4 mycard" imgSrc={user.image.url}>
+            {user && <Card className="usersCard" imgSrc={user.image.url}>
 
                 <p>Name: {user.name.first} {user.name.middle} {user.name.last}</p>
                 <p> Phone: {user.phone} </p>
@@ -21,7 +21,7 @@ const Profile = () => {
                 <p> isBusiness: {user.isBusiness ? "yes" : "no"}</p>
             </Card>}
 
-            <Button onClick={moveToEditProfilePage}>Edit your details</Button>
+            <Button onClick={moveToEditProfilePage} className="mb-1">Edit your details</Button>
         </div>
     );
 };

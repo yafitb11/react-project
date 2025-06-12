@@ -12,9 +12,9 @@ const Header = () => {
 
   return (
     <Navbar fluid rounded className="bg-slate-800">
-      <Navbar.Brand as={Link} href="https://flowbite-react.com">
+      <Navbar.Brand as={Link} to={"/about"} href="/about">
         <span className="self-center whitespace-nowrap text-xl font-semibold text-white">
-          My App
+          BCard
         </span>
       </Navbar.Brand>
 
