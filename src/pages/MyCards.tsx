@@ -53,8 +53,8 @@ const MyCards = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-start gap-2  bg-slate-400 pt-2 pb-2">
-            <h1 className="text-4xl">My Cards</h1>
+        <div className="flex flex-col items-center justify-start gap-2  bg-slate-400">
+            <h1 className="text-3xl m-1">My Cards</h1>
 
             <div className="w-[100%] flex gap-5 flex-wrap p-5 justify-center bg-slate-600">
                 {cards?.map((card) => (

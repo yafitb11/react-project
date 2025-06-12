@@ -9,19 +9,21 @@ const Profile = () => {
     { !user && autoLogIn(); }
 
     return (
-        <div className="flex min-h-screen flex-col items-center justify-start gap-2">
-            <h1 className="text-2xl">Profile Page</h1>
-            <p className="text-xl dark:text-white">Welcome {user?.name.first}</p>
-            {user && <Card className="usersCard" imgSrc={user.image.url}>
+        <div className="pt-1 flex flex-col items-center gap-2 bg-slate-400">
+            <h1 className="text-3xl">My Profile</h1>
+            <p className="text-xl dark:text-white">Welcome {user?.name.first}!</p>
+            <div className="w-[100%] flex gap-3 flex-col p-5 items-center justify-center bg-slate-600">
+                {user && <Card className="usersCard" imgSrc={user.image.url}>
 
-                <p>Name: {user.name.first} {user.name.middle} {user.name.last}</p>
-                <p> Phone: {user.phone} </p>
-                <p> Email: {user.email} </p>
-                <p> Adress: {user.address.state} {user.address.country} {user.address.city} {user.address.street} {user.address.houseNumber}</p>
-                <p> isBusiness: {user.isBusiness ? "yes" : "no"}</p>
-            </Card>}
+                    <p>Name: {user.name.first} {user.name.middle} {user.name.last}</p>
+                    <p> Phone: {user.phone} </p>
+                    <p> Email: {user.email} </p>
+                    <p> Adress: {user.address.state} {user.address.country} {user.address.city} {user.address.street} {user.address.houseNumber}</p>
+                    <p> isBusiness: {user.isBusiness ? "yes" : "no"}</p>
+                </Card>}
 
-            <Button onClick={moveToEditProfilePage} className="mb-1">Edit your details</Button>
+                <Button onClick={moveToEditProfilePage}>Edit your details</Button>
+            </div>
         </div>
     );
 };

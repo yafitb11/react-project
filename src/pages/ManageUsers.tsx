@@ -92,7 +92,7 @@ const ManageUsers = () => {
 
     return (
         <div className="flex flex-col items-center justify-start gap-2  bg-slate-400">
-            <h1 className="text-2xl">Users Page</h1>
+            <h1 className="text-3xl m-1">All Users</h1>
 
 
             <div className="w-[100%] flex gap-3 flex-wrap p-3 justify-center bg-slate-600">

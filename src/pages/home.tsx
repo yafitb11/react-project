@@ -96,8 +96,8 @@ const Home = () => {
 
     return (
         <div className="flex flex-col items-center justify-start gap-2 pt-2 pb-2 bg-slate-400">
-            <h1 className="text-2xl">Home Page</h1>
-            <p className="text-lg">Welcome Home!</p>
+            <h1 className="text-3xl">BCards Home Page</h1>
+            <p className="text-lg">Here you'll find different bussiness cards:</p>
 
             <div className="w-[100%] flex gap-6 flex-wrap p-5 justify-center bg-slate-600">
                 {cards && filterByPage()?.map((card) => {
