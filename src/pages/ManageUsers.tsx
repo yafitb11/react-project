@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Card, Spinner, Button } from "flowbite-react";
+import { Card, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Tuser } from "../types/userType";
