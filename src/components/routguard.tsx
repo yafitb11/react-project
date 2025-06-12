@@ -12,7 +12,8 @@ type RouteGuardProps = {
 const RouteGuard = (props: RouteGuardProps) => {
     const { children, isBiz, isAdmin } = props;
 
-    const { user } = useAuth();
+    const { user, autoLogIn } = useAuth();
+    { !user && autoLogIn(); }
 
     if (!user) {
         return (

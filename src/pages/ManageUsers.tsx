@@ -18,13 +18,14 @@ const ManageUsers = () => {
     const [curPage, setCurPage] = useState<number>(1);
     const [reload, setReload] = useState<boolean>(false);
     const { user, autoLogIn } = useAuth();
+
     { !user && autoLogIn(); }
 
+    const token = localStorage.getItem("token");
     useEffect(() => {
         const getUsers = async () => {
             try {
                 setspiner(true)
-                const token = localStorage.getItem("token");
                 axios.defaults.headers.common["x-auth-token"] = token;
                 const response = await axios.get("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users",);
                 setUsers(response.data);
@@ -63,7 +64,6 @@ const ManageUsers = () => {
 
     const deleteUser = async (id: string) => {
         try {
-            const token = localStorage.getItem("token");
             axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.delete(
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${id}`);
@@ -76,7 +76,19 @@ const ManageUsers = () => {
         setReload((reload => !reload));
     };
 
-    const changeBussinessStatus = async (id: string) => { }
+    const changeBussinessStatus = async (id: string) => {
+        try {
+            axios.defaults.headers.common["x-auth-token"] = token;
+            const response = await axios.patch(
+                `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${id}`);
+            console.log(response.data);
+            toast.success("Bussiness Status changed successfully");
+        } catch (error) {
+            console.error("Error changing status:", error);
+            toast.error("something went wrong");
+        }
+        setReload((reload => !reload));
+    }
 
     return (
         <div className="flex flex-col items-center justify-start gap-2  bg-slate-400">
@@ -99,7 +111,7 @@ const ManageUsers = () => {
                             <div className="flex justify-center" id="iconsdiv">
                                 <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-user/" + user._id)}></MdEdit>
                                 <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteUser(user._id) }}></MdDelete>
-                                <button className="font-bold" onClick={() => { changeBussinessStatus(user._id) }}>isBis</button>
+                                <button className="font-bold cursor-pointer" onClick={() => { changeBussinessStatus(user._id) }}>isBis</button>
                             </div>
                         </Card>
                     );
