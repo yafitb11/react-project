@@ -87,9 +87,9 @@ export default function CreateCard() {
         <div className="relative w-full" id="textAreaDiv">
           <textarea   {...register("description")} id="tdescription" placeholder=" "
             rows={3} style={{ backgroundColor: "lightblue" }}
-            className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "border-red-600 dark:border-red-500" : "border-green-600 dark:border-blue-300"} appearance-none focus:outline-none focus:ring-0  ${errors.description ? "focus:border-red-600 dark:focus:border-red-500" : "focus:border-green-600 dark:focus:border-blue-300"}`}
+            className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "!border-red-600 dark:!border-red-500" : "border-green-600 dark:border-green-500"} appearance-none focus:outline-none focus:ring-0  ${errors.description ? "focus:!border-red-600 dark:!focus:border-red-500" : "focus:border-green-600 dark:border-green-500"}`}
           />
-          <label htmlFor="tdescription" className="absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"> description </label>
+          <label htmlFor="tdescription" className={`absolute text-sm duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 ${errors.description ? "text-red-600 dark:text-red-500" : "text-green-600 dark:text-green-500"}`}> description </label>
           {errors.description && (
             <p className="mt-1">{errors.description.message}</p>
           )}

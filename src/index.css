@@ -96,8 +96,6 @@ justify-content: center;
 
 .myform input{@apply dark:text-black;}
 
-.myform>button{@apply dark:!bg-blue-300 dark:!text-blue-800 ;}
+#textAreaDiv>textarea {@apply dark:!bg-blue-300 ;} 
 
-#textAreaDiv>textarea {@apply dark:!bg-blue-300 dark:border-green-600 ;} 
-
-.myform p{@apply text-red-600 text-sm dark:text-red-500;}
+.myform p{@apply text-red-600 text-sm}
