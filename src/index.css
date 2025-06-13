@@ -81,22 +81,23 @@ gap:10px!important;
   flex-direction: column;
 justify-content: center;  
   gap: 1rem; 
-    background-color: lightblue ;
     padding:20px;
     border-radius:12px;
-    @apply shadow-lg dark:bg-blue-700 ; 
+    background-color: lightblue;
+    @apply shadow-lg 
+   dark:bg-blue-300 ; 
   }
   .myform label{
      background-color:lightblue!important;
-      @apply dark:!bg-blue-700 dark:!text-blue-300;
+      @apply dark:!bg-blue-300;
   }
   
 .myform > h1{text-align:center}
 
-.myform input{@apply dark:!border-blue-300;}
+.myform input{@apply dark:text-black;}
 
 .myform>button{@apply dark:!bg-blue-300 dark:!text-blue-800 ;}
 
-#textAreaDiv>textarea {@apply dark:!bg-blue-700 dark:text-white ;}
+#textAreaDiv>textarea {@apply dark:!bg-blue-300 dark:border-green-600 ;} 
 
 .myform p{@apply text-red-600 text-sm dark:text-red-500;}
