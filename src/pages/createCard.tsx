@@ -56,9 +56,9 @@ export default function CreateCard() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
-
-      <form onSubmit={handleSubmit(submitForm)} className="myform flex flex-col gap-4 align-middle w-[50%] ">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-white pb-2 dark:bg-blue-900">
+      <h1 className="text-3xl m-2 dark:text-white">Create a Card</h1>
+      <form onSubmit={handleSubmit(submitForm)} className="myform flex flex-col gap-4 align-middle w-[50%]">
 
         <FloatingLabel
           {...register("title")}
@@ -69,7 +69,7 @@ export default function CreateCard() {
 
         />
         {errors.title && (
-          <p className="text-sm text-red-500">{errors.title.message}</p>
+          <p>{errors.title.message}</p>
         )}
 
         <FloatingLabel
@@ -81,18 +81,17 @@ export default function CreateCard() {
 
         />
         {errors.subtitle && (
-          <p className="text-sm text-red-500">{errors.subtitle.message}</p>
+          <p>{errors.subtitle.message}</p>
         )}
 
         <div className="relative w-full" id="textAreaDiv">
           <textarea   {...register("description")} id="tdescription" placeholder=" "
             rows={3} style={{ backgroundColor: "lightblue" }}
-            className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "border-red-500" : "border-green-600"
-              } appearance-none focus:outline-none focus:ring-0 focus:border-green-600`}
+            className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "border-red-600 dark:border-red-500" : "border-green-600 dark:border-blue-300"} appearance-none focus:outline-none focus:ring-0 focus:border-green-600`}
           />
           <label htmlFor="tdescription" className="absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"> description </label>
           {errors.description && (
-            <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
+            <p className="mt-1">{errors.description.message}</p>
           )}
         </div>
 
@@ -104,7 +103,7 @@ export default function CreateCard() {
           color={errors.phone ? "error" : "success"}
         />
         {errors.phone && (
-          <p className="text-sm text-red-500">{errors.phone.message}</p>
+          <p>{errors.phone.message}</p>
         )}
 
         <FloatingLabel
@@ -115,7 +114,7 @@ export default function CreateCard() {
           color={errors.email ? "error" : "success"}
         />
         {errors.email && (
-          <p className="text-sm text-red-500">{errors.email.message}</p>
+          <p>{errors.email.message}</p>
         )}
 
         <FloatingLabel
@@ -141,7 +140,7 @@ export default function CreateCard() {
             color={errors.image?.url ? "error" : "success"}
           />
           {errors.image?.url && (
-            <p className="text-sm text-red-500">{errors.image.url.message}</p>
+            <p>{errors.image.url.message}</p>
           )}
 
           <FloatingLabel
@@ -152,7 +151,7 @@ export default function CreateCard() {
             color={errors.image?.alt ? "error" : "success"}
           />
           {errors.image?.alt && (
-            <p className="text-sm text-red-500">{errors.image.alt.message}</p>
+            <p>{errors.image.alt.message}</p>
           )}
 
         </fieldset>
@@ -168,7 +167,7 @@ export default function CreateCard() {
             color={errors.address?.state ? "error" : "success"}
           />
           {errors.address?.state && (
-            <p className="text-sm text-red-500">{errors.address.state.message}</p>
+            <p>{errors.address.state.message}</p>
           )}
 
           <FloatingLabel
@@ -179,7 +178,7 @@ export default function CreateCard() {
             color={errors.address?.country ? "error" : "success"}
           />
           {errors.address?.country && (
-            <p className="text-sm text-red-500">{errors.address.country.message}</p>
+            <p>{errors.address.country.message}</p>
           )}
 
           <FloatingLabel
@@ -190,7 +189,7 @@ export default function CreateCard() {
             color={errors.address?.city ? "error" : "success"}
           />
           {errors.address?.city && (
-            <p className="text-sm text-red-500">{errors.address.city.message}</p>
+            <p>{errors.address.city.message}</p>
           )}
 
           <FloatingLabel
@@ -201,7 +200,7 @@ export default function CreateCard() {
             color={errors.address?.street ? "error" : "success"}
           />
           {errors.address?.street && (
-            <p className="text-sm text-red-500">{errors.address.street.message}</p>
+            <p>{errors.address.street.message}</p>
           )}
 
           <FloatingLabel
@@ -212,7 +211,7 @@ export default function CreateCard() {
             color={errors.address?.houseNumber ? "error" : "success"}
           />
           {errors.address?.houseNumber && (
-            <p className="text-sm text-red-500">{errors.address.houseNumber.message}</p>
+            <p>{errors.address.houseNumber.message}</p>
           )}
 
           <FloatingLabel
@@ -223,7 +222,7 @@ export default function CreateCard() {
             color={errors.address?.zip ? "error" : "success"}
           />
           {errors.address?.zip && (
-            <p className="text-sm text-red-500">{errors.address.zip.message}</p>
+            <p>{errors.address.zip.message}</p>
           )}
 
         </fieldset>

@@ -84,10 +84,19 @@ justify-content: center;
     background-color: lightblue ;
     padding:20px;
     border-radius:12px;
-    @apply shadow-lg ;
+    @apply shadow-lg dark:bg-blue-700 ; 
   }
   .myform label{
      background-color:lightblue!important;
+      @apply dark:!bg-blue-700 dark:!text-blue-300;
   }
   
 .myform > h1{text-align:center}
+
+.myform input{@apply dark:!border-blue-300;}
+
+.myform>button{@apply dark:!bg-blue-300 dark:!text-blue-800 ;}
+
+#textAreaDiv>textarea {@apply dark:!bg-blue-700 dark:text-white ;}
+
+.myform p{@apply text-red-600 text-sm dark:text-red-500;}

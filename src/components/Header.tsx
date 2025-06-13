@@ -1,4 +1,4 @@
-import { Navbar, TextInput } from "flowbite-react";
+import { DarkThemeToggle, Navbar, TextInput } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userActions } from "../store/userSlice";
@@ -11,14 +11,15 @@ const Header = () => {
   const { user } = useAuth();
 
   return (
-    <Navbar fluid rounded className="bg-slate-800">
+    <Navbar fluid rounded className="bg-slate-800 dark:bg-slate-900">
       <Navbar.Brand as={Link} to={"/about"} href="/about">
-        <span className="self-center whitespace-nowrap text-xl font-semibold text-white">
+        <span className="self-center whitespace-nowrap text-2xl font-semibold text-white dark:text-gray-400">
           BCard
         </span>
       </Navbar.Brand>
 
       <Navbar.Brand>
+        <DarkThemeToggle className="mr-[6px]" />
         <TextInput
           rightIcon={IoSearchSharp}
           type="search" onChange={(e) =>
