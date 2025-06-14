@@ -8,9 +8,11 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Tuser } from "../types/userType";
-
+import useAuth from "../hooks/useAuth";
 
 export default function EditUser() {
+    const { user, autoLogIn } = useAuth();
+    { !user && autoLogIn(); }
     const [user1, setUser1] = useState<Tuser>();
     const { id } = useParams<{ id: string }>();
 
@@ -83,9 +85,9 @@ export default function EditUser() {
 
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
+        <main className="flex min-h-screen flex-col items-center justify-center bg-white py-4 dark:bg-slate-800">
 
-            <form onSubmit={handleSubmit(submitForm)} className="myform flex flex-col gap-4 align-middle w-[50%] ">
+            <form onSubmit={handleSubmit(submitForm)} className="myform">
                 <h1 className="text-2xl font-bold text-gray-800">Edit User's Details</h1>
 
                 <fieldset className="flex gap-3 justify-center" >

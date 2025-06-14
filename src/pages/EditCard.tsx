@@ -8,8 +8,11 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 export default function EditCard() {
+    const { user, autoLogIn } = useAuth();
+    { !user && autoLogIn(); }
     const [card, setCard] = useState<Tcard>();
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
@@ -80,9 +83,9 @@ export default function EditCard() {
 
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-white px-4 py-24 dark:bg-gray-900">
+        <main className="flex min-h-screen flex-col items-center justify-center bg-white py-4 dark:bg-slate-800">
 
-            <form onSubmit={handleSubmit(submitForm)} className="myform flex flex-col gap-4 align-middle w-[50%] ">
+            <form onSubmit={handleSubmit(submitForm)} className="myform">
                 <h1 className="text-2xl font-bold text-gray-800">Edit Card Details</h1>
 
                 <FloatingLabel
@@ -112,12 +115,11 @@ export default function EditCard() {
                 <div className="relative w-full" id="textAreaDiv">
                     <textarea   {...register("description")} id="tdescription" placeholder=" "
                         rows={3} style={{ backgroundColor: "lightblue" }}
-                        className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "border-red-500" : "border-green-600"
-                            } appearance-none focus:outline-none focus:ring-0 focus:border-green-600`}
+                        className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "!border-red-600 dark:!border-red-500" : "border-green-600 dark:border-green-500"} appearance-none focus:outline-none focus:ring-0  ${errors.description ? "focus:!border-red-600 dark:!focus:border-red-500" : "focus:border-green-600 dark:border-green-500"}`}
                     />
-                    <label htmlFor="tdescription" className="absolute text-sm text-green-600 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4"> description </label>
+                    <label htmlFor="tdescription" className={`absolute text-sm duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 ${errors.description ? "text-red-600 dark:text-red-500" : "text-green-600 dark:text-green-500"}`}> description </label>
                     {errors.description && (
-                        <p className="text-red-600 text-sm mt-1">{errors.description.message}</p>
+                        <p className="mt-1">{errors.description.message}</p>
                     )}
                 </div>
 

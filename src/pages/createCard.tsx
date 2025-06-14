@@ -56,10 +56,9 @@ export default function CreateCard() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-white pb-2 dark:bg-blue-900">
-      <h1 className="text-3xl m-2 dark:text-white">Create a Card</h1>
-      <form onSubmit={handleSubmit(submitForm)} className="myform mb-1">
-
+    <main className="flex min-h-screen flex-col items-center justify-center bg-white py-4 dark:bg-slate-800">
+      <form onSubmit={handleSubmit(submitForm)} className="myform">
+        <h1 className="text-2xl font-bold text-gray-800">Create a Card</h1>
         <FloatingLabel
           {...register("title")}
           variant="outlined"
