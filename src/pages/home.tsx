@@ -20,6 +20,8 @@ const Home = () => {
     const { user, autoLogIn } = useAuth();
     const token = localStorage.getItem("token");
 
+    { !user && autoLogIn(); }
+
     useEffect(() => {
         const fetchCards = async () => {
             try {
@@ -35,8 +37,6 @@ const Home = () => {
 
         fetchCards();
     }, []);
-
-    { !user && autoLogIn(); }
 
     const filterCards = () => {
         if (cards) {

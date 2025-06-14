@@ -8,13 +8,14 @@ import { Tcard } from "../types/cardType";
 import useAuth from "../hooks/useAuth";
 import { FaHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { Pagination } from "flowbite-react";
 
 const Favorites = () => {
     const [cards, setCards] = useState<Tcard[]>([]);
     const [spiner, setspiner] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(false);
     const nav = useNavigate();
-
+    const [curPage, setCurPage] = useState<number>(1);
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord)
     const { user, autoLogIn } = useAuth();
 
@@ -77,12 +78,22 @@ const Favorites = () => {
         setReload((reload => !reload));
     };
 
+    const onPageChange = (page: number) => {
+        setCurPage(page);
+    }
+
+    const filterByPage = () => {
+        const start = (curPage - 1) * 12;
+        const end = start + 12;
+        return filterCards().slice(start, end);
+    }
+
     return (
         <div className="flex flex-col items-center justify-start gap-2  bg-blue-300 dark:bg-slate-400">
             <h1 className="text-3xl m-3">My Favorites</h1>
 
             <div className="w-[100%] flex gap-5 flex-wrap p-5 justify-center bg-blue-100 dark:bg-slate-800">
-                {cards && filterCards()?.map((card) => (
+                {cards && filterByPage()?.map((card) => (
                     <Card key={card._id} id={card._id} className="mycard" imgSrc={card.image.url}>
                         <div>
                             <h2>{card.title}</h2>
@@ -106,6 +117,10 @@ const Favorites = () => {
             {spiner && (
                 <Spinner color="purple" aria-label="Purple spinner example" />
             )}
+
+            <div className="flex overflow-x-auto sm:justify-center mb-3">
+                <Pagination currentPage={curPage} totalPages={Math.ceil(filterCards().length / 12)} onPageChange={onPageChange} />
+            </div>
 
         </div>
     );
