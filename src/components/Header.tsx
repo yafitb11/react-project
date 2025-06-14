@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <Navbar fluid rounded className="bg-slate-800 dark:bg-slate-900">
       <Navbar.Brand as={Link} to={"/about"} href="/about">
-        <span className="self-center whitespace-nowrap text-2xl font-semibold text-white dark:text-gray-400">
+        <span className="self-center whitespace-nowrap text-2xl font-semibold text-white hover:text-cyan-700 dark:text-gray-400 dark:hover:text-white">
           BCard
         </span>
       </Navbar.Brand>

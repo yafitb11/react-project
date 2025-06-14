@@ -8,10 +8,10 @@
     height: 500px;
     padding: 0px;
     border-radius: 10px;
-    background-color: lightgray;
    overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease-in-out; 
+     @apply !bg-gray-300 dark:!bg-slate-500;
   }
   
 .usersCard{
@@ -37,15 +37,15 @@
   }
   
 .mycard p, .usersCard p{
-  @apply font-normal text-gray-700 dark:text-gray-400 m-[4px] text-[15px];
+  @apply font-normal text-gray-700 dark:text-slate-100 m-[4px] text-[15px];
 }
 
 .mycard h5{
-  @apply  text-gray-700 dark:text-gray-400 m-[4px] text-[17px] font-semibold;
+  @apply  text-gray-700 dark:text-slate-100 m-[4px] text-[17px] font-semibold;
 }
 
 .mycard h2, .usersCard h2{
-  @apply text-gray-700 dark:text-gray-400 ml-[4px] mt-[6px] text-xl font-bold;
+  @apply text-gray-700 dark:text-slate-100 ml-[4px] mt-[6px] text-xl font-bold;
 }
 
 .mycard div{
@@ -57,6 +57,7 @@
 background-color: lightgray;
   overflow-y: auto;
   height:336px;
+  @apply !bg-gray-300 dark:!bg-slate-500;
 }
 
 .usersCard div{
