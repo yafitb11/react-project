@@ -78,10 +78,10 @@ const Favorites = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-start gap-2 bg-slate-400">
-            <h1 className="text-3xl m-1">My Favorites</h1>
+        <div className="flex flex-col items-center justify-start gap-2  bg-blue-300 dark:bg-slate-400">
+            <h1 className="text-3xl m-3">My Favorites</h1>
 
-            <div className="w-[100%] flex gap-5 flex-wrap p-5 justify-center bg-slate-600">
+            <div className="w-[100%] flex gap-5 flex-wrap p-5 justify-center bg-blue-100 dark:bg-slate-800">
                 {cards && filterCards()?.map((card) => (
                     <Card key={card._id} id={card._id} className="mycard" imgSrc={card.image.url}>
                         <div>

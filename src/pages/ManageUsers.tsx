@@ -91,11 +91,11 @@ const ManageUsers = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-start gap-2  bg-slate-400">
-            <h1 className="text-3xl m-1">All Users</h1>
+        <div className="flex flex-col items-center justify-start gap-2 bg-blue-300 dark:bg-slate-400">
+            <h1 className="text-3xl m-3">All Users</h1>
 
 
-            <div className="w-[100%] flex gap-3 flex-wrap p-3 justify-center bg-slate-600">
+            <div className="w-[100%] flex gap-6 flex-wrap p-5 justify-center  bg-blue-100 dark:bg-slate-800">
                 {users && filterByPage()?.map((user) => {
                     return (
                         <Card key={user._id} id={user._id} className="usersCard" imgSrc={user.image.url}>

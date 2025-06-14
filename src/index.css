@@ -19,11 +19,11 @@
     height: 450px;
     padding: 0px;
     border-radius: 10px;
-    background-color: lightgray;
    overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease-in-out; 
     padding-bottom:10px;
+    @apply bg-lightblue dark:!bg-slate-500;
   }
 
   .mycard:hover, .usersCard:hover {
@@ -36,6 +36,8 @@
     object-fit: cover; 
   }
   
+.usersCard img{background-color: white!important;}
+
 .mycard p, .usersCard p{
   @apply font-normal text-gray-700 dark:text-slate-100 m-[4px] text-[15px];
 }
@@ -56,8 +58,11 @@
  padding-top: 2px !important;
 background-color: lightgray;
   overflow-y: auto;
+  overflow-x: hidden;      
+  word-wrap: break-word;  
+  white-space: normal;     
   height:336px;
-  @apply bg-lightblue dark:!bg-slate-500;
+  @apply bg-lightblue dark:bg-slate-500;
 }
 
 .usersCard div{
@@ -66,9 +71,10 @@ background-color: lightgray;
  padding-left: 7px !important;
  padding-bottom: 2px !important;
  padding-top: 2px !important;
-background-color: lightgray;
+ margin-bottom:0px!important;
   overflow-y: auto;
   height:336px;
+  @apply bg-lightblue dark:bg-slate-500;
 }
 
 #iconsdiv{height: 30px!important;
