@@ -58,7 +58,7 @@ export default function CreateCard() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white pb-2 dark:bg-blue-900">
       <h1 className="text-3xl m-2 dark:text-white">Create a Card</h1>
-      <form onSubmit={handleSubmit(submitForm)} className="myform flex flex-col gap-4 align-middle w-[50%]">
+      <form onSubmit={handleSubmit(submitForm)} className="myform mb-1">
 
         <FloatingLabel
           {...register("title")}

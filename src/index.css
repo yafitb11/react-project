@@ -84,16 +84,10 @@ gap:10px!important;
 
 
   .myform{
-    display: flex;
-  flex-direction: column;
-justify-content: center;  
-  gap: 1rem; 
-    padding:20px;
-    border-radius:12px;
-    background-color: lightblue;
-    @apply shadow-lg 
+    @apply p-5 flex flex-col gap-4 justify-center align-middle w-[50%] shadow-lg rounded-xl bg-lightblue
    dark:bg-blue-300 ; 
   }
+  
   .myform label{
      background-color:lightblue!important;
       @apply dark:!bg-blue-300;
