@@ -73,8 +73,8 @@ const MyCards = () => {
                             onClick={() => navigate("/card/" + card._id)}>View Card</Button>
 
                         <div className="flex justify-center" id="iconsdiv">
-                            <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-card/" + card._id)}></MdEdit>
-                            <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteCard(card._id) }}></MdDelete>
+                            <MdEdit className="cursor-pointer text-2xl dark:hover:text-white" onClick={() => navigate("/edit-card/" + card._id)}></MdEdit>
+                            <MdDelete className="cursor-pointer text-2xl dark:hover:text-white" onClick={() => { deleteCard(card._id) }}></MdDelete>
                         </div>
                     </Card>
                 ))}

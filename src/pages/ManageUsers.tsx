@@ -109,9 +109,9 @@ const ManageUsers = () => {
                                 <p> isAdmin: {user.isAdmin ? "yes" : "no"}</p>
                             </div>
                             <div className="flex justify-center" id="iconsdiv">
-                                <MdEdit className="cursor-pointer text-2xl" onClick={() => navigate("/edit-user/" + user._id)}></MdEdit>
-                                <MdDelete className="cursor-pointer text-2xl" onClick={() => { deleteUser(user._id) }}></MdDelete>
-                                <button className="font-bold cursor-pointer" onClick={() => { changeBussinessStatus(user._id) }}>isBis</button>
+                                <MdEdit className="cursor-pointer text-2xl dark:hover:text-white" onClick={() => navigate("/edit-user/" + user._id)}></MdEdit>
+                                <MdDelete className="cursor-pointer text-2xl dark:hover:text-white" onClick={() => { deleteUser(user._id) }}></MdDelete>
+                                <button className="font-bold cursor-pointer dark:hover:text-white" onClick={() => { changeBussinessStatus(user._id) }}>isBis</button>
                             </div>
                         </Card>
                     );
