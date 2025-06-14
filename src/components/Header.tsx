@@ -5,10 +5,12 @@ import { userActions } from "../store/userSlice";
 import { searchActions } from "../store/searchSlice";
 import { IoSearchSharp } from "react-icons/io5";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <Navbar fluid rounded className="bg-slate-800 dark:bg-slate-900">
@@ -47,6 +49,7 @@ const Header = () => {
             onClick={() => {
               dispatch(userActions.logout());
               localStorage.setItem("token", "");
+              navigate("/");
             }}>
             Sign Out
           </Navbar.Link>)}

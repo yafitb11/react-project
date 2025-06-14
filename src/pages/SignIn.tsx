@@ -20,13 +20,9 @@ export default function SignIn() {
 
     const { login } = useAuth();
 
-    //m-auto mt-20 flex w-2/5 flex-col gap-4 rounded-lg p-4 shadow-lg"
 
-    return (
-        <form
-            className="m-auto mt-20 flex w-2/5 flex-col gap-4 rounded-lg p-4 shadow-lg"
-            onSubmit={handleSubmit(login)}
-        >
+    return (<div className="flex min-h-[87vh] flex-col items-center justify-center bg-white dark:bg-slate-600">
+        <form className="myform xs:!w-[89%] sm:!w-[65%] md:!w-[40%] lg:!w-[38%] xl:!w-[36%]" onSubmit={handleSubmit(login)} >
             <h1 className="text-2xl font-bold text-gray-800">Sign In</h1>
             <FloatingLabel
                 type="email"
@@ -52,6 +48,7 @@ export default function SignIn() {
                 Sign In
             </Button>
         </form>
+    </div>
     );
 }
 

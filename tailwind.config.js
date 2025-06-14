@@ -8,6 +8,9 @@ export default {
       colors: {
         lightblue: '#ADD8E6',
       },
+      screens: {
+        'xs': '250px',
+      },
     },
   },
   plugins: [flowbite.plugin()],
