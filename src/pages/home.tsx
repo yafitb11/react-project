@@ -15,7 +15,6 @@ const Home = () => {
     const nav = useNavigate();
     const [spiner, setspiner] = useState<boolean>(false);
     const [curPage, setCurPage] = useState<number>(1);
-
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord);
     const { user, autoLogIn } = useAuth();
     const token = localStorage.getItem("token");

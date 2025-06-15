@@ -40,7 +40,6 @@ export default function Register() {
     });
 
     const submitForm = async (data: FormData) => {
-
         try {
             const response = await axios.post(
                 "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users", data);
@@ -54,7 +53,6 @@ export default function Register() {
             console.log("Error registering:", error);
             toast.error("something went wrong", { autoClose: 2000, });
         }
-
     };
 
 

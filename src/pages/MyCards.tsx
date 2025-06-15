@@ -44,7 +44,9 @@ const MyCards = () => {
             const response = await axios.delete(
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`);
             console.log(response.data);
-            toast.success("editing was successful", { autoClose: 2000, });
+            if (response.status === 200) {
+                toast.success("Card deleted successfuly", { autoClose: 2000, });
+            }
         } catch (error) {
             console.error("Error deleting card:", error);
             toast.error("something went wrong", { autoClose: 2000, });

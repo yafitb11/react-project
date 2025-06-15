@@ -67,8 +67,11 @@ const ManageUsers = () => {
             axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.delete(
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${id}`);
-            console.log(response.data);
-            toast.success("User deleted successfully");
+
+            if (response.status === 200) {
+                toast.success("User deleted successfully");
+            }
+
         } catch (error) {
             console.error("Error deleting user:", error);
             toast.error("something went wrong");
@@ -81,8 +84,10 @@ const ManageUsers = () => {
             axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.patch(
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${id}`);
-            console.log(response.data);
-            toast.success("Bussiness Status changed successfully");
+
+            if (response.status === 200) {
+                toast.success("Bussiness Status changed successfully");
+            }
         } catch (error) {
             console.error("Error changing status:", error);
             toast.error("something went wrong");
@@ -93,7 +98,6 @@ const ManageUsers = () => {
     return (
         <div className="flex flex-col items-center justify-start gap-2 bg-blue-300 dark:bg-slate-400">
             <h1 className="text-3xl m-3">All Users</h1>
-
 
             <div className="w-[100%] flex gap-6 flex-wrap p-5 justify-center  bg-blue-100 dark:bg-slate-800">
                 {users && filterByPage()?.map((user) => {

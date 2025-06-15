@@ -22,7 +22,6 @@ export default function EditCard() {
                 const response = await axios.get(
                     `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`,
                 );
-                console.log(response.data);
 
                 setCard(response.data);
             } catch (error) {
@@ -68,7 +67,6 @@ export default function EditCard() {
             axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.put(
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${card?._id}`, data);
-            console.log("card edited successfuly:", response.data);
 
             if (response.status === 200) {
                 toast.success("editing was successful", { autoClose: 2000, });

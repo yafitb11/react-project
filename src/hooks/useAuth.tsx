@@ -26,11 +26,9 @@ const useAuth = () => {
                 );
 
                 dispatch(userActions.login(response.data));
-                console.log("succsess");
-
 
             } catch (error) {
-                console.log(error);
+                console.log("error in autoLogin:", error);
             }
         }
     }
@@ -42,7 +40,6 @@ const useAuth = () => {
                 "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/login",
                 form,
             );
-            console.log(token.data);
             localStorage.setItem("token", token.data);
 
             autoLogIn();
@@ -50,7 +47,7 @@ const useAuth = () => {
             navigate('/');
 
         } catch (error) {
-            console.log(error);
+            console.log("error in full signIn:", error);
             toast.error("Sign In Failed", { autoClose: 2000, });
         }
     };

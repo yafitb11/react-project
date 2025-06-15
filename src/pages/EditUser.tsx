@@ -22,22 +22,20 @@ export default function EditUser() {
                 const response = await axios.get(
                     `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${id}`,
                 );
-                console.log("first user", response.data);
 
                 setUser1(response.data);
             } catch (error) {
                 console.error("Error fetching user details:", error);
             }
         };
-
         fetchUserDetails();
     }, [id]);
 
     const navigate = useNavigate();
+
     const { register, handleSubmit, formState: { errors, isValid }, reset } = useForm<Tuser>({
         mode: "onChange", resolver: joiResolver(editUserSchema),
     });
-
 
     useEffect(() => {
         if (user1) {
@@ -70,7 +68,6 @@ export default function EditUser() {
             axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.put(
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${user1?._id}`, data);
-            console.log("user edited successfuly:", response.data);
 
             if (response.status === 200) {
                 toast.success("editing was successful", { autoClose: 2000, });

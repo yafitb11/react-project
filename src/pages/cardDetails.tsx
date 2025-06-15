@@ -13,7 +13,6 @@ const CardDetails = () => {
                 const response = await axios.get(
                     `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`,
                 );
-                console.log(response.data);
 
                 setCard(response.data);
             } catch (error) {

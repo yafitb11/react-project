@@ -46,7 +46,6 @@ export default function EditProfile() {
         const token = localStorage.getItem("token");
         if (token) {
             const parsedToken = jwtDecode(token) as { _id: string; };
-
             axios.defaults.headers.common["x-auth-token"] = token;
             try {
                 const response = await axios.put(
