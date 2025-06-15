@@ -128,7 +128,7 @@ export default function CreateCard() {
         )}
 
 
-        <fieldset className="flex gap-3 justify-center">
+        <fieldset className="flex gap-3 justify-center xs:flex-col">
           <legend className="mb-1" style={{ color: "#057A55" }}>image</legend>
 
           <FloatingLabel
@@ -155,7 +155,7 @@ export default function CreateCard() {
 
         </fieldset>
 
-        <fieldset className="flex gap-3 flex-wrap justify-center">
+        <fieldset className="flex gap-3 flex-wrap justify-center max-[639px]:!flex-col">
           <legend className="mb-1" style={{ color: "#057A55" }}>address</legend>
 
           <FloatingLabel

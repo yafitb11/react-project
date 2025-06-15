@@ -22,7 +22,7 @@ export default function SignIn() {
 
 
     return (<div className="flex min-h-[87vh] flex-col items-center justify-center bg-white dark:bg-slate-600">
-        <form className="myform xs:!w-[89%] sm:!w-[65%] md:!w-[40%] lg:!w-[38%] xl:!w-[36%]" onSubmit={handleSubmit(login)} >
+        <form className="myform sm:!w-[65%] md:!w-[40%] lg:!w-[38%] xl:!w-[36%]" onSubmit={handleSubmit(login)} >
             <h1 className="text-2xl font-bold text-gray-800">Sign In</h1>
             <FloatingLabel
                 type="email"
