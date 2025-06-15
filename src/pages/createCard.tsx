@@ -65,11 +65,8 @@ export default function CreateCard() {
           label="title"
           type="text"
           color={errors.title ? "error" : "success"}
-
         />
-        {errors.title && (
-          <p>{errors.title.message}</p>
-        )}
+        {errors.title && (<p>{errors.title.message}</p>)}
 
         <FloatingLabel
           {...register("subtitle")}
@@ -77,11 +74,8 @@ export default function CreateCard() {
           label="subtitle"
           type="text"
           color={errors.subtitle ? "error" : "success"}
-
         />
-        {errors.subtitle && (
-          <p>{errors.subtitle.message}</p>
-        )}
+        {errors.subtitle && (<p>{errors.subtitle.message}</p>)}
 
         <div className="relative w-full" id="textAreaDiv">
           <textarea   {...register("description")} id="tdescription" placeholder=" "
@@ -89,9 +83,7 @@ export default function CreateCard() {
             className={`peer block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-white rounded-lg border ${errors.description ? "!border-red-600 dark:!border-red-500" : "border-green-600 dark:border-green-500"} appearance-none focus:outline-none focus:ring-0  ${errors.description ? "focus:!border-red-600 dark:!focus:border-red-500" : "focus:border-green-600 dark:border-green-500"}`}
           />
           <label htmlFor="tdescription" className={`absolute text-sm duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 ${errors.description ? "text-red-600 dark:text-red-500" : "text-green-600 dark:text-green-500"}`}> description </label>
-          {errors.description && (
-            <p className="mt-1">{errors.description.message}</p>
-          )}
+          {errors.description && (<p className="mt-1">{errors.description.message}</p>)}
         </div>
 
         <FloatingLabel
@@ -101,9 +93,7 @@ export default function CreateCard() {
           type="number"
           color={errors.phone ? "error" : "success"}
         />
-        {errors.phone && (
-          <p>{errors.phone.message}</p>
-        )}
+        {errors.phone && (<p>{errors.phone.message}</p>)}
 
         <FloatingLabel
           {...register("email")}
@@ -112,9 +102,7 @@ export default function CreateCard() {
           type="email"
           color={errors.email ? "error" : "success"}
         />
-        {errors.email && (
-          <p>{errors.email.message}</p>
-        )}
+        {errors.email && (<p>{errors.email.message}</p>)}
 
         <FloatingLabel
           {...register("web")}
@@ -123,107 +111,94 @@ export default function CreateCard() {
           type="text"
           color={errors.web ? "error" : "success"}
         />
-        {errors.web && (
-          <p className="text-sm text-red-500">{errors.web.message}</p>
-        )}
-
+        {errors.web && (<p className="text-sm text-red-500">{errors.web.message}</p>)}
 
         <fieldset className="flex gap-3 justify-center xs:flex-col">
           <legend className="mb-1" style={{ color: "#057A55" }}>image</legend>
-
-          <FloatingLabel
-            {...register("image.url")}
-            variant="outlined"
-            label="url"
-            type="text"
-            color={errors.image?.url ? "error" : "success"}
-          />
-          {errors.image?.url && (
-            <p>{errors.image.url.message}</p>
-          )}
-
-          <FloatingLabel
-            {...register("image.alt")}
-            variant="outlined"
-            label="alt"
-            type="text"
-            color={errors.image?.alt ? "error" : "success"}
-          />
-          {errors.image?.alt && (
-            <p>{errors.image.alt.message}</p>
-          )}
-
+          <div>
+            <FloatingLabel
+              {...register("image.url")}
+              variant="outlined"
+              label="url"
+              type="text"
+              color={errors.image?.url ? "error" : "success"}
+            />
+            {errors.image?.url && (<p>{errors.image.url.message}</p>)}
+          </div>
+          <div>
+            <FloatingLabel
+              {...register("image.alt")}
+              variant="outlined"
+              label="alt"
+              type="text"
+              color={errors.image?.alt ? "error" : "success"}
+            />
+            {errors.image?.alt && (<p>{errors.image.alt.message}</p>)}
+          </div>
         </fieldset>
 
         <fieldset className="flex gap-3 flex-wrap justify-center max-[639px]:!flex-col">
           <legend className="mb-1" style={{ color: "#057A55" }}>address</legend>
-
-          <FloatingLabel
-            {...register("address.state")}
-            variant="outlined"
-            label="state"
-            type="text"
-            color={errors.address?.state ? "error" : "success"}
-          />
-          {errors.address?.state && (
-            <p>{errors.address.state.message}</p>
-          )}
-
-          <FloatingLabel
-            {...register("address.country")}
-            variant="outlined"
-            label="country"
-            type="text"
-            color={errors.address?.country ? "error" : "success"}
-          />
-          {errors.address?.country && (
-            <p>{errors.address.country.message}</p>
-          )}
-
-          <FloatingLabel
-            {...register("address.city")}
-            variant="outlined"
-            label="city"
-            type="text"
-            color={errors.address?.city ? "error" : "success"}
-          />
-          {errors.address?.city && (
-            <p>{errors.address.city.message}</p>
-          )}
-
-          <FloatingLabel
-            {...register("address.street")}
-            variant="outlined"
-            label="street"
-            type="text"
-            color={errors.address?.street ? "error" : "success"}
-          />
-          {errors.address?.street && (
-            <p>{errors.address.street.message}</p>
-          )}
-
-          <FloatingLabel
-            {...register("address.houseNumber")}
-            variant="outlined"
-            label="houseNumber"
-            type="number"
-            color={errors.address?.houseNumber ? "error" : "success"}
-          />
-          {errors.address?.houseNumber && (
-            <p>{errors.address.houseNumber.message}</p>
-          )}
-
-          <FloatingLabel
-            {...register("address.zip")}
-            variant="outlined"
-            label="zip"
-            type="number"
-            color={errors.address?.zip ? "error" : "success"}
-          />
-          {errors.address?.zip && (
-            <p>{errors.address.zip.message}</p>
-          )}
-
+          <div>
+            <FloatingLabel
+              {...register("address.state")}
+              variant="outlined"
+              label="state"
+              type="text"
+              color={errors.address?.state ? "error" : "success"}
+            />
+            {errors.address?.state && (<p>{errors.address.state.message}</p>)}
+          </div>
+          <div>
+            <FloatingLabel
+              {...register("address.country")}
+              variant="outlined"
+              label="country"
+              type="text"
+              color={errors.address?.country ? "error" : "success"}
+            />
+            {errors.address?.country && (<p>{errors.address.country.message}</p>)}
+          </div>
+          <div>
+            <FloatingLabel
+              {...register("address.city")}
+              variant="outlined"
+              label="city"
+              type="text"
+              color={errors.address?.city ? "error" : "success"}
+            />
+            {errors.address?.city && (<p>{errors.address.city.message}</p>)}
+          </div>
+          <div>
+            <FloatingLabel
+              {...register("address.street")}
+              variant="outlined"
+              label="street"
+              type="text"
+              color={errors.address?.street ? "error" : "success"}
+            />
+            {errors.address?.street && (<p>{errors.address.street.message}</p>)}
+          </div>
+          <div>
+            <FloatingLabel
+              {...register("address.houseNumber")}
+              variant="outlined"
+              label="houseNumber"
+              type="number"
+              color={errors.address?.houseNumber ? "error" : "success"}
+            />
+            {errors.address?.houseNumber && (<p>{errors.address.houseNumber.message}</p>)}
+          </div>
+          <div>
+            <FloatingLabel
+              {...register("address.zip")}
+              variant="outlined"
+              label="zip"
+              type="number"
+              color={errors.address?.zip ? "error" : "success"}
+            />
+            {errors.address?.zip && (<p>{errors.address.zip.message}</p>)}
+          </div>
         </fieldset>
 
         <Button type="submit" className="w-full" disabled={!isValid}>
