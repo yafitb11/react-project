@@ -100,4 +100,4 @@ gap:10px!important;
 
 #textAreaDiv>textarea {@apply dark:!bg-slate-300 ;} 
 
-.myform p{@apply text-red-600 text-sm}
+.myform p{@apply text-red-600 text-sm; } 

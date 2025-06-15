@@ -95,7 +95,7 @@ export default function EditCard() {
 
                 />
                 {errors.title && (
-                    <p className="text-sm text-red-500">{errors.title.message}</p>
+                    <p>{errors.title.message}</p>
                 )}
 
                 <FloatingLabel
@@ -107,7 +107,7 @@ export default function EditCard() {
 
                 />
                 {errors.subtitle && (
-                    <p className="text-sm text-red-500">{errors.subtitle.message}</p>
+                    <p>{errors.subtitle.message}</p>
                 )}
 
                 <div className="relative w-full" id="textAreaDiv">
@@ -129,7 +129,7 @@ export default function EditCard() {
                     color={errors.phone ? "error" : "success"}
                 />
                 {errors.phone && (
-                    <p className="text-sm text-red-500">{errors.phone.message}</p>
+                    <p>{errors.phone.message}</p>
                 )}
 
                 <FloatingLabel
@@ -140,7 +140,7 @@ export default function EditCard() {
                     color={errors.email ? "error" : "success"}
                 />
                 {errors.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
+                    <p>{errors.email.message}</p>
                 )}
 
                 <FloatingLabel
@@ -151,7 +151,7 @@ export default function EditCard() {
                     color={errors.web ? "error" : "success"}
                 />
                 {errors.web && (
-                    <p className="text-sm text-red-500">{errors.web.message}</p>
+                    <p>{errors.web.message}</p>
                 )}
 
                 <fieldset className="flex gap-3 justify-center">
@@ -165,7 +165,7 @@ export default function EditCard() {
                         color={errors.image?.url ? "error" : "success"}
                     />
                     {errors.image?.url && (
-                        <p className="text-sm text-red-500">{errors.image.url.message}</p>
+                        <p>{errors.image.url.message}</p>
                     )}
 
                     <FloatingLabel
@@ -176,7 +176,7 @@ export default function EditCard() {
                         color={errors.image?.alt ? "error" : "success"}
                     />
                     {errors.image?.alt && (
-                        <p className="text-sm text-red-500">{errors.image.alt.message}</p>
+                        <p>{errors.image.alt.message}</p>
                     )}
 
                 </fieldset>
@@ -192,7 +192,7 @@ export default function EditCard() {
                         color={errors.address?.state ? "error" : "success"}
                     />
                     {errors.address?.state && (
-                        <p className="text-sm text-red-500">{errors.address.state.message}</p>
+                        <p>{errors.address.state.message}</p>
                     )}
 
                     <FloatingLabel
@@ -203,7 +203,7 @@ export default function EditCard() {
                         color={errors.address?.country ? "error" : "success"}
                     />
                     {errors.address?.country && (
-                        <p className="text-sm text-red-500">{errors.address.country.message}</p>
+                        <p>{errors.address.country.message}</p>
                     )}
 
                     <FloatingLabel
@@ -214,7 +214,7 @@ export default function EditCard() {
                         color={errors.address?.city ? "error" : "success"}
                     />
                     {errors.address?.city && (
-                        <p className="text-sm text-red-500">{errors.address.city.message}</p>
+                        <p>{errors.address.city.message}</p>
                     )}
 
                     <FloatingLabel
@@ -225,7 +225,7 @@ export default function EditCard() {
                         color={errors.address?.street ? "error" : "success"}
                     />
                     {errors.address?.street && (
-                        <p className="text-sm text-red-500">{errors.address.street.message}</p>
+                        <p>{errors.address.street.message}</p>
                     )}
 
                     <FloatingLabel
@@ -236,7 +236,7 @@ export default function EditCard() {
                         color={errors.address?.houseNumber ? "error" : "success"}
                     />
                     {errors.address?.houseNumber && (
-                        <p className="text-sm text-red-500">{errors.address.houseNumber.message}</p>
+                        <p>{errors.address.houseNumber.message}</p>
                     )}
 
                     <FloatingLabel
@@ -247,7 +247,7 @@ export default function EditCard() {
                         color={errors.address?.zip ? "error" : "success"}
                     />
                     {errors.address?.zip && (
-                        <p className="text-sm text-red-500">{errors.address.zip.message}</p>
+                        <p>{errors.address.zip.message}</p>
                     )}
 
                 </fieldset>

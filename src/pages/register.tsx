@@ -67,18 +67,18 @@ export default function Register() {
 
                     <FloatingLabel {...register("name.first")} variant="outlined" label="First Name" type="text" color={errors.name?.first ? "error" : "success"} />
                     {errors.name?.first && (
-                        <p className="text-sm text-red-500">{errors.name.first.message}</p>
+                        <p>{errors.name.first.message}</p>
                     )}
 
                     <FloatingLabel {...register("name.middle")} variant="outlined" label="Middle Name" type="text" color={errors.name?.middle ? "error" : "success"} />
                     {errors.name?.middle && (
-                        <p className="text-sm text-red-500">{errors.name.middle.message}</p>
+                        <p>{errors.name.middle.message}</p>
                     )}
 
                     <FloatingLabel {...register("name.last")} variant="outlined" label="Last Name"
                         type="text" color={errors.name?.last ? "error" : "success"} />
                     {errors.name?.last && (
-                        <p className="text-sm text-red-500">{errors.name.last.message}</p>
+                        <p>{errors.name.last.message}</p>
                     )}
 
                 </fieldset>
@@ -88,19 +88,19 @@ export default function Register() {
                     type="number" color={errors.phone ? "error" : "success"}
                 />
                 {errors.phone && (
-                    <p className="text-sm text-red-500">{errors.phone.message}</p>
+                    <p>{errors.phone.message}</p>
                 )}
 
                 <FloatingLabel  {...register("email")} variant="outlined" label="Email"
                     type="email" color={errors.email ? "error" : "success"} />
                 {errors.email && (
-                    <p className="text-sm text-red-500">{errors.email.message}</p>
+                    <p>{errors.email.message}</p>
                 )}
 
                 <FloatingLabel {...register("password")} variant="outlined" label="Password"
                     type="password" color={errors.password ? "error" : "success"} />
                 {errors.password && (
-                    <p className="text-sm text-red-500">{errors.password.message}</p>
+                    <p>{errors.password.message}</p>
                 )}
 
 
@@ -110,14 +110,14 @@ export default function Register() {
                     <FloatingLabel {...register("image.url")} variant="outlined" label="url"
                         type="text" color={errors.image?.url ? "error" : "success"} />
                     {errors.image?.url && (
-                        <p className="text-sm text-red-500">{errors.image.url.message}</p>
+                        <p>{errors.image.url.message}</p>
                     )}
 
 
                     <FloatingLabel  {...register("image.alt")} variant="outlined" label="alt"
                         type="text" color={errors.image?.alt ? "error" : "success"} />
                     {errors.image?.alt && (
-                        <p className="text-sm text-red-500">{errors.image.alt.message}</p>
+                        <p>{errors.image.alt.message}</p>
                     )}
 
                 </fieldset>
@@ -130,14 +130,14 @@ export default function Register() {
                     <FloatingLabel   {...register("address.state")} variant="outlined" label="state"
                         type="text" color={errors.address?.state ? "error" : "success"} />
                     {errors.address?.state && (
-                        <p className="text-sm text-red-500">{errors.address.state.message}</p>
+                        <p>{errors.address.state.message}</p>
                     )}
 
 
                     <FloatingLabel {...register("address.country")} variant="outlined" label="country"
                         type="text" color={errors.address?.country ? "error" : "success"} />
                     {errors.address?.country && (
-                        <p className="text-sm text-red-500">{errors.address.country.message}</p>
+                        <p>{errors.address.country.message}</p>
                     )}
 
 
@@ -145,28 +145,28 @@ export default function Register() {
                         type="text" color={errors.address?.city ? "error" : "success"}
                     />
                     {errors.address?.city && (
-                        <p className="text-sm text-red-500">{errors.address.city.message}</p>
+                        <p>{errors.address.city.message}</p>
                     )}
 
 
                     <FloatingLabel   {...register("address.street")} variant="outlined" label="street"
                         type="text" color={errors.address?.street ? "error" : "success"} />
                     {errors.address?.street && (
-                        <p className="text-sm text-red-500">{errors.address.street.message}</p>
+                        <p>{errors.address.street.message}</p>
                     )}
 
 
                     <FloatingLabel {...register("address.houseNumber")} variant="outlined" label="houseNumber" type="text"
                         color={errors.address?.houseNumber ? "error" : "success"} />
                     {errors.address?.houseNumber && (
-                        <p className="text-sm text-red-500">{errors.address.houseNumber.message}</p>
+                        <p>{errors.address.houseNumber.message}</p>
                     )}
 
 
                     <FloatingLabel {...register("address.zip")} variant="outlined" label="zip"
                         type="text" color={errors.address?.zip ? "error" : "success"} />
                     {errors.address?.zip && (
-                        <p className="text-sm text-red-500">{errors.address.zip.message}</p>
+                        <p>{errors.address.zip.message}</p>
                     )}
 
                 </fieldset>

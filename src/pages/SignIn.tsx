@@ -31,7 +31,7 @@ export default function SignIn() {
                 {...register("email")}
                 color={errors["email"] ? "error" : "success"}
             />
-            <span className="text-sm text-red-500">{errors["email"]?.message}</span>
+            <span className="text-sm text-red-600">{errors["email"]?.message}</span>
 
             <FloatingLabel
                 type="password"
@@ -40,7 +40,7 @@ export default function SignIn() {
                 {...register("password")}
                 color={errors["password"] ? "error" : "success"}
             />
-            <span className="text-sm text-red-500">
+            <span className="text-sm text-red-600">
                 {errors["password"]?.message}
             </span>
 
