@@ -20,8 +20,8 @@ const Header = () => {
         </span>
       </Navbar.Brand>
 
-      <Navbar.Brand>
-        <DarkThemeToggle className="mr-[6px]" />
+      <Navbar.Brand className="xs:w-[60%]">
+        <DarkThemeToggle className="mr-[6px] xs:mr-[2px]" />
         <TextInput
           rightIcon={IoSearchSharp}
           type="search" onChange={(e) =>
