@@ -69,12 +69,12 @@ const ManageUsers = () => {
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${id}`);
 
             if (response.status === 200) {
-                toast.success("User deleted successfully");
+                toast.success("User deleted successfully", { autoClose: 2000, });
             }
 
         } catch (error) {
             console.error("Error deleting user:", error);
-            toast.error("something went wrong");
+            toast.error("something went wrong", { autoClose: 2000, });
         }
         setReload((reload => !reload));
     };
@@ -86,11 +86,11 @@ const ManageUsers = () => {
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/${id}`);
 
             if (response.status === 200) {
-                toast.success("Bussiness Status changed successfully");
+                toast.success("Bussiness Status changed successfully", { autoClose: 2000, });
             }
         } catch (error) {
             console.error("Error changing status:", error);
-            toast.error("something went wrong");
+            toast.error("something went wrong", { autoClose: 2000, });
         }
         setReload((reload => !reload));
     }

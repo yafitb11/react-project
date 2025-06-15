@@ -66,12 +66,12 @@ const Home = () => {
                     card.likes = card?.likes.filter((like) => like !== user?._id + "");
                     const cardIndex = cardsArr.findIndex((card) => card._id === cardId);
                     cardsArr[cardIndex] = card;
-                    toast.success("Card unliked successfully");
+                    toast.success("Card unliked successfully", { autoClose: 2000, });
                 } else {
                     card.likes = [...card.likes, user?._id + ""];
                     const cardIndex = cardsArr.findIndex((card) => card._id === cardId);
                     cardsArr[cardIndex] = card;
-                    toast.success("Card liked successfully");
+                    toast.success("Card liked successfully", { autoClose: 2000, });
                 }
 
                 setCards(cardsArr);
@@ -79,7 +79,7 @@ const Home = () => {
 
         } catch (error) {
             console.log("Error liking/unliking card:", error);
-            toast.error("something went wrong");
+            toast.error("something went wrong", { autoClose: 2000, });
         }
     };
 

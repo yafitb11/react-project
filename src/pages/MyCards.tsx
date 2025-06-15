@@ -43,7 +43,7 @@ const MyCards = () => {
             axios.defaults.headers.common["x-auth-token"] = token;
             const response = await axios.delete(
                 `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards/${id}`);
-            console.log(response.data);
+
             if (response.status === 200) {
                 toast.success("Card deleted successfuly", { autoClose: 2000, });
             }

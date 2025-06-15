@@ -69,11 +69,12 @@ const Favorites = () => {
                 card.likes = card?.likes.filter((like) => like !== user?._id + "");
                 const cardIndex = cardsArr.findIndex((card) => card._id === cardId);
                 cardsArr[cardIndex] = card;
-                toast.success("Card unliked successfully");
+                toast.success("Card unliked successfully", { autoClose: 2000, });
             }
             setCards(cardsArr);
         } catch (error) {
-            console.log("Error liking/unliking card:", error);
+            console.log("Error unliking card:", error);
+            toast.error("something went wrong", { autoClose: 2000, });
         }
         setReload((reload => !reload));
     };
