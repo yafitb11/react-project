@@ -46,7 +46,7 @@ export default function Register() {
 
             if (response.status === 201) {
                 toast.success("you have registered successfully", { autoClose: 2000, });
-                navigate('/');
+                navigate('/signin');
             }
 
         } catch (error) {
