@@ -9,13 +9,16 @@ import { FaHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
 import useAuth from "../hooks/useAuth";
 import { Pagination } from "flowbite-react";
+import { useDispatch } from "react-redux";
+import { searchActions } from "../store/searchSlice";
 
 const Home = () => {
     const [cards, setCards] = useState<Tcard[]>([]);
     const nav = useNavigate();
+    const dispatch = useDispatch();
     const [spiner, setspiner] = useState<boolean>(false);
-    const [curPage, setCurPage] = useState<number>(1);
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord);
+    const currentPage = useSelector((state: TRootState) => state.searchSlice.currentPage);
     const { user, autoLogIn } = useAuth();
     const token = localStorage.getItem("token");
 
@@ -83,12 +86,8 @@ const Home = () => {
         }
     };
 
-    const onPageChange = (page: number) => {
-        setCurPage(page);
-    }
-
     const filterByPage = () => {
-        const start = (curPage - 1) * 12;
+        const start = (currentPage - 1) * 12;
         const end = start + 12;
         return filterCards().slice(start, end);
     }
@@ -128,7 +127,7 @@ const Home = () => {
             )}
 
             <div className="flex overflow-x-auto sm:justify-center mb-3">
-                <Pagination currentPage={curPage} totalPages={Math.ceil(filterCards().length / 12)} onPageChange={onPageChange} />
+                <Pagination currentPage={currentPage} totalPages={Math.ceil(filterCards().length / 12)} onPageChange={(page) => dispatch(searchActions.setCurrentPage(page))} />
             </div>
 
         </div>

@@ -9,13 +9,16 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { Pagination } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { searchActions } from "../store/searchSlice";
 
 const ManageUsers = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [users, setUsers] = useState<Tuser[]>([]);
     const [spiner, setspiner] = useState<boolean>(false);
     const search = useSelector((state: TRootState) => state.searchSlice.searchWord);
-    const [curPage, setCurPage] = useState<number>(1);
+    const currentPage = useSelector((state: TRootState) => state.searchSlice.currentPage);
     const [reload, setReload] = useState<boolean>(false);
     const { user, autoLogIn } = useAuth();
 
@@ -52,12 +55,9 @@ const ManageUsers = () => {
         return users;
     }
 
-    const onPageChange = (page: number) => {
-        setCurPage(page);
-    }
 
     const filterByPage = () => {
-        const start = (curPage - 1) * 12;
+        const start = (currentPage - 1) * 12;
         const end = start + 12;
         return filterUsers().slice(start, end);
     }
@@ -126,7 +126,7 @@ const ManageUsers = () => {
                 <Spinner color="purple" aria-label="Purple spinner example" />
             )}
             <div className="flex overflow-x-auto sm:justify-center mb-3">
-                <Pagination currentPage={curPage} totalPages={Math.ceil(filterUsers().length / 12)} onPageChange={onPageChange} />
+                <Pagination currentPage={currentPage} totalPages={Math.ceil(filterUsers().length / 12)} onPageChange={(page) => dispatch(searchActions.setCurrentPage(page))} />
             </div>
 
         </div>

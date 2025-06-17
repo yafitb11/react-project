@@ -9,16 +9,18 @@ import useAuth from "../hooks/useAuth";
 import { FaHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { Pagination } from "flowbite-react";
+import { searchActions } from "../store/searchSlice";
+import { useDispatch } from "react-redux";
 
 const Favorites = () => {
     const [cards, setCards] = useState<Tcard[]>([]);
     const [spiner, setspiner] = useState<boolean>(false)
     const [reload, setReload] = useState<boolean>(false);
     const nav = useNavigate();
-    const [curPage, setCurPage] = useState<number>(1);
-    const search = useSelector((state: TRootState) => state.searchSlice.searchWord)
+    const search = useSelector((state: TRootState) => state.searchSlice.searchWord);
+    const currentPage = useSelector((state: TRootState) => state.searchSlice.currentPage);
+    const dispatch = useDispatch();
     const { user, autoLogIn } = useAuth();
-
     { !user && autoLogIn(); }
 
     useEffect(() => {
@@ -79,12 +81,10 @@ const Favorites = () => {
         setReload((reload => !reload));
     };
 
-    const onPageChange = (page: number) => {
-        setCurPage(page);
-    }
+
 
     const filterByPage = () => {
-        const start = (curPage - 1) * 12;
+        const start = (currentPage - 1) * 12;
         const end = start + 12;
         return filterCards().slice(start, end);
     }
@@ -120,7 +120,7 @@ const Favorites = () => {
             )}
 
             <div className="flex overflow-x-auto sm:justify-center mb-3">
-                <Pagination currentPage={curPage} totalPages={Math.ceil(filterCards().length / 12)} onPageChange={onPageChange} />
+                <Pagination currentPage={currentPage} totalPages={Math.ceil(filterCards().length / 12)} onPageChange={(page) => dispatch(searchActions.setCurrentPage(page))} />
             </div>
 
         </div>

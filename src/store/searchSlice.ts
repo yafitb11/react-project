@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     searchWord: "",
+    currentPage: 1,
 }
 
 
@@ -13,8 +14,11 @@ const searchSlice = createSlice({
     reducers: {
         setSearchWord: (state, action) => {
             state.searchWord = action.payload;
+            state.currentPage = 1;
         },
-
+        setCurrentPage: (state, action) => {
+            state.currentPage = action.payload;
+        },
     },
 });
 
