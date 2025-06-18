@@ -6,7 +6,7 @@ This is a web application developed as part of a final project in a Full-Stack W
 
 The application includes the following main pages and features:
 
-- **Homepage** – Showing Bussiness Cards of all users.
+- **Homepage** – Showing Business Cards of all users.
 - **Register / Login** – User registration and authentication with validation and JWT token
 - **User Profile** – View and update personal information (Bonus)
 - **Create/Edit Business Cards** – Users can manage their own cards (CRUD)
@@ -14,7 +14,7 @@ The application includes the following main pages and features:
 - **Mark Favorites** – Users can mark and save favorite cards, and view them on Favorites Page
 - **Admin Dashboard (CRM)** – Admin-only page to view, update, and delete users (Bonus)
 - **Dark/Light Mode Toggle** – Theme switcher across all pages
-- **Search and pagination** – for a friendly use. *Please note that 'myCards' page doesen't have them, as it isn't likely for a bussiness to have more than 12 bussiness cards.
+- **Search and pagination** – for a friendly use. *Please note that 'myCards' page doesen't have them, as it isn't likely for a business to have more than 12 business cards.
 
 ## 🧰 Technologies
 

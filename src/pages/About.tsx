@@ -6,7 +6,7 @@ export default function CreateCard() {
             <h1 className="text-3xl m-1">About the App</h1>
             <div className="w-full flex justify-center bg-blue-100 dark:bg-slate-800">
                 <div className="w-[70%] xs:w-[89%] p-5 my-4 rounded-[10px] bg-lightblue dark:bg-slate-500">
-                    <p className="">Welcome to BizConnect – a dynamic business card web application designed to help users discover, manage, and showcase business profiles online. <br />
+                    <p className="">Welcome to BCard – a dynamic business card web application designed to help users discover, manage, and showcase business profiles online. <br />
 
                         This project was developed as part of a React-based course module, and it integrates key full-stack technologies and concepts. It features a responsive and accessible user interface, role-based content display, and seamless communication with a server-side API. <br />
                         <br />
